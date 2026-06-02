@@ -1,0 +1,84 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---------------------------------------------------------------------------
+   Theme tokens. Dark is the default; the .light class (toggled on <html>)
+   flips the surface/text colors. Accent gradient stays the same in both.
+--------------------------------------------------------------------------- */
+:root {
+  --bg: #0d0a1f;
+  --bg-elevated: #141029;
+  --bg-card: rgba(255, 255, 255, 0.03);
+  --border: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.14);
+  --text: #ececf3;
+  --text-muted: #a3a0b8;
+  --dot: 168, 158, 200; /* rgb for the canvas dot-grid */
+  --dot-glow: 217, 70, 239;
+}
+
+html.light {
+  --bg: #f4f2fb;
+  --bg-elevated: #ffffff;
+  --bg-card: rgba(13, 10, 31, 0.03);
+  --border: rgba(13, 10, 31, 0.1);
+  --border-strong: rgba(13, 10, 31, 0.18);
+  --text: #1a1530;
+  --text-muted: #585478;
+  --dot: 120, 110, 160;
+  --dot-glow: 168, 85, 247;
+}
+
+* {
+  border-color: var(--border);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Brand gradient text helper */
+.text-gradient {
+  background: linear-gradient(120deg, #a855f7 0%, #d946ef 50%, #ec4899 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* Card surface used across sections */
+.surface {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(12px);
+}
+
+/* Custom scrollbar (dark-friendly) */
+.thin-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+.thin-scroll::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 9999px;
+}
+
+/* Focus ring consistent with brand */
+:focus-visible {
+  outline: 2px solid var(--accent-ring, #a855f7);
+  outline-offset: 2px;
+}
