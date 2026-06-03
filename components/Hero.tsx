@@ -23,10 +23,6 @@ export function Hero() {
           Hi, I&apos;m {profile.firstName}{" "}
           <span className="text-gradient">{profile.lastName}</span>
         </h1>
-
-        <p className="mt-4 max-w-xl text-base text-[var(--text-muted)] sm:text-lg">
-          {profile.tagline}
-        </p>
       </motion.div>
 
       <motion.div

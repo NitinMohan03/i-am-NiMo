@@ -14,7 +14,7 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
     >
       {/* Gradient preview area */}
       <div
-        className={`relative h-44 bg-gradient-to-br ${project.gradient} overflow-hidden`}
+        className={`relative h-28 bg-gradient-to-br ${project.gradient} overflow-hidden`}
       >
         <div className="absolute inset-0 opacity-20 [background-image:radial-gradient(circle,rgba(255,255,255,0.6)_1px,transparent_1px)] [background-size:18px_18px]" />
         <span className="absolute left-5 top-4 font-display text-5xl font-extrabold text-white/30">
@@ -28,11 +28,44 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
       {/* Body */}
       <div className="flex flex-1 flex-col p-6">
         <h3 className="font-display text-xl font-bold">{project.name}</h3>
-        <p className="mt-2 flex-1 text-sm leading-relaxed text-[var(--text-muted)]">
+        <p className="mt-2 text-sm leading-relaxed text-[var(--text-muted)]">
           {project.description}
         </p>
 
-        <div className="mt-4 flex flex-wrap gap-1.5">
+        {/* Metrics tiles */}
+        {project.metrics && project.metrics.length > 0 && (
+          <div className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-4">
+            {project.metrics.map((m) => (
+              <div
+                key={m.label}
+                className="rounded-lg border border-[var(--border)] bg-[var(--bg-card)] px-2.5 py-2"
+              >
+                <div className="font-display text-base font-bold leading-none text-[var(--text)]">
+                  {m.value}
+                </div>
+                <div className="mt-1 text-[10px] uppercase tracking-wider text-[var(--text-muted)]">
+                  {m.label}
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* Spec sheet */}
+        {project.specs && project.specs.length > 0 && (
+          <dl className="mt-4 grid grid-cols-[auto_1fr] gap-x-4 gap-y-1.5 text-xs">
+            {project.specs.map((s) => (
+              <div key={s.label} className="contents">
+                <dt className="font-mono uppercase tracking-wider text-accent-purple">
+                  {s.label}
+                </dt>
+                <dd className="text-[var(--text-muted)]">{s.value}</dd>
+              </div>
+            ))}
+          </dl>
+        )}
+
+        <div className="mt-4 flex flex-1 flex-wrap content-end gap-1.5">
           {project.tech.map((t) => (
             <span
               key={t}

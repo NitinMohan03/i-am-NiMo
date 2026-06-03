@@ -24,6 +24,9 @@ export type EducationItem = {
   end: string;
 };
 
+export type Metric = { value: string; label: string };
+export type Spec = { label: string; value: string };
+
 export type Project = {
   name: string;
   // Two-digit display number, e.g. "01"
@@ -33,6 +36,10 @@ export type Project = {
   tech: string[];
   // Tailwind gradient classes for the card preview area
   gradient: string;
+  // Headline numbers shown as small tiles under the title. 2-4 looks best.
+  metrics?: Metric[];
+  // Key/value "spec sheet" rows at the bottom of the card. 2-4 looks best.
+  specs?: Spec[];
   // Links — set to null where unknown so the UI hides the button.
   repo: string | null;
   demo: string | null;
@@ -48,7 +55,30 @@ export const profile = {
 
   // Used by the About bento and the chat system prompt.
   mindset:
-    "Building more than software. I trace problems end-to-end — from the data layer to the pixel — and I care about performance, security, and shipping things people can actually rely on.",
+    "I'm a software engineer who likes owning the whole problem — tracing it from the data layer to the last pixel — and lately I've been pointing that same instinct at AI. Three years shipping production React and Node systems at Accenture taught me to sweat performance, security, and reliability; my work at NYU pushes it into GenAI — RAG pipelines, LLM orchestration, and agentic systems that actually do things, not just chat. What I really want to build are AI products that hold up in front of real users, not just in a demo.",
+
+  // Short, human one-liner for the About header.
+  intro:
+    "Full-stack engineer turned AI builder. I ship reliable software and the agentic systems on top of it.",
+
+  // Target roles — shown as chips, signals what I'm aiming for.
+  roles: [
+    "Forward-Deployed Engineer",
+    "AI / Agentic Engineer",
+    "Full-Stack Software Engineer",
+  ],
+
+  // What I'm into right now — the About "currently" card.
+  focus:
+    "Building agentic and RAG-powered products — wiring LLMs to real tools, data, and users — while keeping the engineering underneath production-grade.",
+
+  // Quick credibility stats for the About bento. Keep to 4.
+  highlights: [
+    { value: "3 yrs", label: "Production SWE" },
+    { value: "84+", label: "Vulns Remediated" },
+    { value: "45+", label: "Shipped Components" },
+    { value: "3.89", label: "GPA @ NYU" },
+  ] as { value: string; label: string }[],
 
   // Longer narrative — feeds the About section and seeds the chat assistant.
   bio: [
@@ -56,10 +86,10 @@ export const profile = {
     "At Accenture he worked on large-scale healthcare applications built with React and Node.js: he built PDF ingestion pipelines that extracted medical data (ICD diagnosis codes, patient demographics, provider details) and rendered them as interactive, auditable digital forms; led a frontend modernization migrating legacy class-based React to React 17 with Hooks and Redux, cutting unnecessary re-renders by ~40%; and personally remediated 84+ critical security vulnerabilities (XSS, SQL injection, insecure headers) surfaced by enterprise DAST/SAST scans.",
     "He was promoted to Software Engineer within 18 months, won the ACE Bright Beginners Award in his third month, and was named Star Performer for Q2 2024. He served as technical lead and single point of contact for a D3.js/React reporting dashboard, and onboarded and mentored 6 new engineers.",
     "Earlier he interned at Ernst & Young as a Full Stack Developer, building a Python + TimescaleDB time-series ingestion pipeline (42% faster queries) and a deterministic simulation engine for hardware anomalies.",
-    "Now at NYU he focuses on GenAI and cloud: he's built a serverless RAG research-paper assistant (FastAPI on Cloud Run, Pinecone vector search, dynamic LLM routing via OpenRouter), a real-time campus-safety mapping platform (React/TypeScript, Mapbox, AWS Cognito, WebSockets), and several AWS-native AI applications. This portfolio's chat box is itself one of his GenAI demos.",
+    "Now at NYU he focuses on GenAI, agentic systems, and cloud: he's built a serverless RAG research-paper assistant (FastAPI on Cloud Run, Pinecone vector search, dynamic LLM routing via OpenRouter), a real-time campus-safety mapping platform (React/TypeScript, Mapbox, AWS Cognito, WebSockets), and several AWS-native AI applications wiring LLMs to real tools and data. He's targeting Forward-Deployed Engineer, AI/agentic, and full-stack SWE roles — work where he can sit close to users and ship AI products that hold up in production. This portfolio's chat box is itself one of his GenAI demos.",
   ].join("\n\n"),
 
-  status: "Open to full-time SWE roles (New Grad / 2027)",
+  status: "Open to Forward-Deployed, AI/Agentic & Full-Stack roles (New Grad 2027)",
 
   location: {
     city: "Brooklyn, New York",
@@ -161,6 +191,18 @@ export const profile = {
         "Serverless GenAI research assistant: chat with academic PDFs, auto-summaries, and quiz generation grounded in the document via Retrieval-Augmented Generation.",
       tech: ["FastAPI", "RAG", "Pinecone", "Cloud Run", "OpenRouter", "Firebase"],
       gradient: "from-violet-500 via-fuchsia-500 to-pink-500",
+      metrics: [
+        { value: "<2s", label: "First Token" },
+        { value: "Top-K", label: "Retrieval" },
+        { value: "Multi", label: "LLM Routing" },
+        { value: "0", label: "Idle Cost" },
+      ],
+      specs: [
+        { label: "Arch", value: "Serverless (Cloud Run)" },
+        { label: "Data", value: "Pinecone Vector Store" },
+        { label: "AI/ML", value: "RAG, OpenRouter routing" },
+        { label: "Auth", value: "Firebase" },
+      ],
       repo: "https://github.com/NitinMohan03",
       demo: null,
     },
@@ -172,6 +214,18 @@ export const profile = {
         "Community safety platform: live incident feed, Mapbox heatmaps, safety-aware route planning, and role-based admin moderation — with a real-time sync layer over WebSockets.",
       tech: ["React", "TypeScript", "Mapbox GL JS", "AWS Cognito", "WebSockets", "Playwright"],
       gradient: "from-sky-500 via-indigo-500 to-purple-600",
+      metrics: [
+        { value: "<200ms", label: "Live Sync" },
+        { value: "Real-Time", label: "Incident Feed" },
+        { value: "RBAC", label: "Moderation" },
+        { value: "E2E", label: "Tested" },
+      ],
+      specs: [
+        { label: "Arch", value: "React SPA + WebSocket layer" },
+        { label: "Maps", value: "Mapbox GL JS heatmaps" },
+        { label: "Auth", value: "AWS Cognito (RBAC)" },
+        { label: "QA", value: "Playwright E2E" },
+      ],
       repo: "https://github.com/NitinMohan03",
       demo: null,
     },
@@ -183,6 +237,18 @@ export const profile = {
         "Near-real-time Formula 1 tyre-degradation and race-pace anomaly monitoring: a Lambda-style pipeline replaying driver-lap events through Spark Streaming into a live dashboard.",
       tech: ["PySpark", "Kafka", "Redis", "Streamlit", "FastF1", "Docker"],
       gradient: "from-rose-500 via-orange-500 to-amber-400",
+      metrics: [
+        { value: "20 cars", label: "Live Streams" },
+        { value: "Sub-sec", label: "Latency" },
+        { value: "Anomaly", label: "Detection" },
+        { value: "Kappa", label: "Pipeline" },
+      ],
+      specs: [
+        { label: "Arch", value: "Spark Streaming (Kappa)" },
+        { label: "Ingest", value: "Kafka event replay" },
+        { label: "State", value: "Redis hot store" },
+        { label: "Source", value: "FastF1 telemetry" },
+      ],
       repo: "https://github.com/NitinMohan03",
       demo: null,
     },
@@ -194,6 +260,18 @@ export const profile = {
         "Natural-language photo album on AWS — upload images and search them with queries like “photos with dogs in a park,” powered by Rekognition labeling and OpenSearch indexing.",
       tech: ["AWS Lambda", "Lex", "Rekognition", "OpenSearch", "API Gateway", "S3"],
       gradient: "from-emerald-500 via-teal-500 to-cyan-500",
+      metrics: [
+        { value: "NL Query", label: "Search" },
+        { value: "Auto", label: "Labeling" },
+        { value: "Event", label: "Driven" },
+        { value: "0", label: "Servers" },
+      ],
+      specs: [
+        { label: "Arch", value: "Event-driven Lambda" },
+        { label: "Vision", value: "Rekognition labels" },
+        { label: "Index", value: "OpenSearch" },
+        { label: "NLP", value: "Amazon Lex" },
+      ],
       repo: "https://github.com/NitinMohan03",
       demo: null,
     },
@@ -205,13 +283,32 @@ export const profile = {
         "Conversational restaurant-recommendation chatbot: collects preferences via Lex, queues with SQS, looks up restaurants in OpenSearch + DynamoDB, and emails suggestions via SES.",
       tech: ["AWS Lambda", "Lex V2", "SQS", "OpenSearch", "DynamoDB", "SES"],
       gradient: "from-fuchsia-500 via-purple-500 to-indigo-500",
+      metrics: [
+        { value: "Async", label: "Decoupled" },
+        { value: "Conv.", label: "Lex Intents" },
+        { value: "Email", label: "Delivery" },
+        { value: "0", label: "Servers" },
+      ],
+      specs: [
+        { label: "Arch", value: "SQS-decoupled Lambdas" },
+        { label: "NLP", value: "Lex V2 slot filling" },
+        { label: "Data", value: "OpenSearch + DynamoDB" },
+        { label: "Delivery", value: "SES email" },
+      ],
       repo: "https://github.com/NitinMohan03",
       demo: null,
     },
   ] as Project[],
 
   // "What I build" chips for the About bento.
-  builds: ["GenAI / RAG", "React + Next.js", "Cloud / Serverless", "Secure APIs"],
+  builds: [
+    "Agentic AI Systems",
+    "RAG Pipelines",
+    "LLM Orchestration",
+    "React + Next.js",
+    "Cloud / Serverless",
+    "Secure APIs",
+  ],
 };
 
 export type Profile = typeof profile;

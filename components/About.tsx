@@ -17,7 +17,7 @@ export function About() {
         transition={{ duration: 0.5 }}
         className="grid auto-rows-[minmax(0,auto)] grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3"
       >
-        {/* Name / title — wide */}
+        {/* Intro / narrative — wide */}
         <div className={`${card} sm:col-span-2`}>
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--text-muted)]">
             About me
@@ -25,17 +25,48 @@ export function About() {
           <h3 className="mt-2 font-display text-2xl font-bold sm:text-3xl">
             {profile.name}
           </h3>
-          <p className="mt-1 text-[var(--text-muted)]">
-            {profile.title} · {profile.education[0].school} M.S. CS
+          <p className="mt-1 text-sm text-[var(--text-muted)]">
+            {profile.intro}
           </p>
-          <p className="mt-4 max-w-xl text-sm leading-relaxed text-[var(--text-muted)]">
+          <p className="mt-4 text-sm leading-relaxed text-[var(--text-muted)]">
             {profile.mindset}
           </p>
+
+          {/* Target roles */}
+          <div className="mt-5 flex flex-wrap gap-2">
+            {profile.roles.map((r) => (
+              <span
+                key={r}
+                className="rounded-full border border-accent-purple/40 bg-accent-purple/10 px-3 py-1 text-xs font-medium text-accent-purple"
+              >
+                {r}
+              </span>
+            ))}
+          </div>
         </div>
 
         {/* Photo */}
         <div className={`${card} flex items-center justify-center`}>
           <Avatar className="h-32 w-32 rounded-3xl text-[2.5rem]" />
+        </div>
+
+        {/* Highlights — wide stat strip */}
+        <div className={`${card} sm:col-span-2 lg:col-span-3`}>
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--text-muted)]">
+            By the numbers
+          </p>
+          <div className="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-4">
+            {profile.highlights.map((h) => (
+              <div key={h.label}>
+                <div className="font-display text-2xl font-bold sm:text-3xl">
+                  {h.value}
+                </div>
+                <div className="mt-1 text-xs uppercase tracking-wider text-[var(--text-muted)]">
+                  {h.label}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* What I build */}
@@ -55,6 +86,16 @@ export function About() {
           </div>
         </div>
 
+        {/* Currently / focus */}
+        <div className={card}>
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--text-muted)]">
+            Currently
+          </p>
+          <p className="mt-3 text-sm leading-relaxed text-[var(--text-muted)]">
+            {profile.focus}
+          </p>
+        </div>
+
         {/* Location */}
         <div className={card}>
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--text-muted)]">
@@ -70,7 +111,7 @@ export function About() {
 
         {/* Status — wide */}
         <div
-          className={`${card} flex items-center gap-3 sm:col-span-2 lg:col-span-1`}
+          className={`${card} flex items-center gap-3 sm:col-span-2 lg:col-span-3`}
         >
           <span className="relative flex h-3 w-3 shrink-0">
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-60" />
