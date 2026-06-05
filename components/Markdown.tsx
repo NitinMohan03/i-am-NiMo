@@ -21,7 +21,7 @@ export function Markdown({ children }: { children: string }) {
           ),
           em: ({ children }) => <em className="italic">{children}</em>,
           ul: ({ children }) => (
-            <ul className="list-disc space-y-1 pl-5 marker:text-accent-purple">
+            <ul className="list-disc space-y-1 pl-5 marker:text-accent-clay">
               {children}
             </ul>
           ),
@@ -36,7 +36,7 @@ export function Markdown({ children }: { children: string }) {
               href={href}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-medium text-accent-purple underline underline-offset-2 hover:text-accent-pink"
+              className="font-medium text-accent-clay underline underline-offset-2 hover:text-accent-sage"
             >
               {children}
             </a>
@@ -56,7 +56,7 @@ export function Markdown({ children }: { children: string }) {
             </code>
           ),
           blockquote: ({ children }) => (
-            <blockquote className="border-l-2 border-accent-purple/50 pl-3 text-[var(--text-muted)]">
+            <blockquote className="border-l border-accent-clay/50 pl-3 text-[var(--text-muted)]">
               {children}
             </blockquote>
           ),

@@ -3,12 +3,10 @@
 import { motion } from "framer-motion";
 
 export function SectionHeading({
-  eyebrow,
   title,
   accent,
   subtitle,
 }: {
-  eyebrow: string;
   title: string;
   accent: string;
   subtitle?: string;
@@ -21,14 +19,11 @@ export function SectionHeading({
       transition={{ duration: 0.5 }}
       className="mb-10 text-center"
     >
-      <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-[var(--text-muted)]">
-        {eyebrow}
-      </p>
-      <h2 className="font-display text-3xl font-extrabold tracking-tight sm:text-4xl md:text-5xl">
-        {title} <span className="text-gradient">{accent}</span>
+      <h2 className="text-balance font-display text-3xl font-extrabold tracking-tight sm:text-4xl md:text-5xl">
+        {title} <span className="text-accent-clay">{accent}</span>
       </h2>
       {subtitle && (
-        <p className="mx-auto mt-4 max-w-2xl text-[var(--text-muted)]">
+        <p className="mx-auto mt-4 max-w-2xl text-pretty text-[var(--text-muted)]">
           {subtitle}
         </p>
       )}

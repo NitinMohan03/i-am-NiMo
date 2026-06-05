@@ -45,7 +45,7 @@ export function ChatDock() {
           >
             <div className="mb-3 flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <span className="grid h-7 w-7 place-items-center rounded-lg bg-gradient-brand text-white">
+                <span className="grid h-7 w-7 place-items-center rounded-lg bg-gradient-brand text-[#1b262b]">
                   <SparkIcon />
                 </span>
                 <p className="text-sm font-semibold">
@@ -79,7 +79,7 @@ export function ChatDock() {
       {/* Slim dock — input + chips */}
       <div className="border-t border-[var(--border)] pt-4">
         <div className="mb-2 flex items-center gap-2">
-          <span className="grid h-6 w-6 place-items-center rounded-md bg-gradient-brand text-white">
+          <span className="grid h-6 w-6 place-items-center rounded-md bg-gradient-brand text-[#1b262b]">
             <SparkIcon />
           </span>
           <p className="text-xs font-semibold uppercase tracking-[0.15em] text-[var(--text-muted)]">
@@ -110,7 +110,7 @@ export function ChatDock() {
             type="submit"
             disabled={loading || !input.trim()}
             aria-label="Send message"
-            className="grid h-8 w-8 shrink-0 place-items-center rounded-xl bg-gradient-brand text-white transition-opacity disabled:opacity-40"
+            className="grid h-8 w-8 shrink-0 place-items-center rounded-xl bg-gradient-brand text-[#1b262b] transition-opacity disabled:opacity-40"
           >
             <SendIcon />
           </button>

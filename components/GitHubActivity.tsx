@@ -53,7 +53,6 @@ export async function GitHubActivity() {
   return (
     <section id="github" className="mx-auto max-w-6xl scroll-mt-24 px-4 py-16">
       <SectionHeading
-        eyebrow="Open Source"
         title="GitHub"
         accent="Activity"
         subtitle="Latest public repositories, fetched live from the GitHub API."
@@ -73,7 +72,7 @@ export async function GitHubActivity() {
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" className="text-[var(--text-muted)]">
                   <path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.5v-1.7c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 5 18.3 5.3 18.3 5.3c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.8.5 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z" />
                 </svg>
-                <h3 className="truncate font-medium transition-colors group-hover:text-accent-purple">
+                <h3 className="truncate font-medium transition-colors group-hover:text-accent-clay">
                   {r.name}
                 </h3>
               </div>
@@ -98,12 +97,12 @@ export async function GitHubActivity() {
         </div>
       ) : (
         <p className="text-center text-[var(--text-muted)]">
-          Couldn&apos;t load live GitHub data right now —{" "}
+          Couldn&apos;t load live GitHub data right now;{" "}
           <a
             href={profile.socials.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gradient font-medium"
+            className="font-medium text-accent-clay hover:underline"
           >
             browse the repos directly
           </a>

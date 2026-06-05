@@ -6,7 +6,6 @@ export function Projects() {
   return (
     <section id="projects" className="mx-auto max-w-6xl scroll-mt-24 px-4 py-16">
       <SectionHeading
-        eyebrow="Portfolio"
         title="Featured"
         accent="Projects"
         subtitle="A curated set of projects spanning GenAI, full-stack, and data engineering."

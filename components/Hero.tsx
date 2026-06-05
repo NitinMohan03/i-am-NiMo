@@ -12,12 +12,12 @@ export function Hero() {
         transition={{ duration: 0.5, ease: "easeOut" }}
         className="mx-auto max-w-5xl"
       >
-        <p className="text-sm font-medium text-accent-purple">
+        <p className="text-sm font-medium text-accent-clay">
           {profile.title} · {profile.education[0].school} M.S. CS
         </p>
-        <h1 className="mt-3 font-display text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl">
+        <h1 className="mt-3 text-balance font-display text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl">
           Hi, I&apos;m {profile.firstName}{" "}
-          <span className="text-gradient">{profile.lastName}</span>
+          <span className="text-accent-clay">{profile.lastName}</span>
         </h1>
         <p className="mt-4 max-w-2xl text-lg leading-relaxed text-[var(--text-muted)]">
           {profile.intro}
@@ -28,29 +28,29 @@ export function Hero() {
           {profile.roles.map((r) => (
             <span
               key={r}
-              className="rounded-full border border-accent-purple/40 bg-accent-purple/10 px-3 py-1 text-xs font-medium text-accent-purple"
+              className="rounded-full border border-accent-clay/40 bg-accent-clay/10 px-3 py-1 text-xs font-medium text-accent-clay"
             >
               {r}
             </span>
           ))}
         </div>
 
-        {/* Highlights */}
-        <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4">
-          {profile.highlights.map((h) => (
+        {/* Telemetry readout: real, specific numbers as an instrument strip, not metric cards */}
+        <dl className="mt-8 flex flex-wrap gap-x-8 gap-y-5 border-t border-[var(--border)] pt-6">
+          {profile.highlights.map((h, i) => (
             <div
               key={h.label}
-              className="surface rounded-2xl px-4 py-3"
+              className={i > 0 ? "sm:border-l sm:border-[var(--border)] sm:pl-8" : ""}
             >
-              <div className="font-display text-2xl font-bold sm:text-3xl">
+              <dt className="font-display text-2xl font-bold leading-none sm:text-3xl">
                 {h.value}
-              </div>
-              <div className="mt-1 text-[11px] uppercase tracking-wider text-[var(--text-muted)]">
+              </dt>
+              <dd className="mt-1.5 font-mono text-[11px] uppercase tracking-wider text-[var(--text-muted)]">
                 {h.label}
-              </div>
+              </dd>
             </div>
           ))}
-        </div>
+        </dl>
       </motion.div>
     </section>
   );

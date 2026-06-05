@@ -14,7 +14,7 @@ const ORBIT = [
 export function Skills() {
   return (
     <section id="skills" className="mx-auto max-w-6xl scroll-mt-24 px-4 py-16">
-      <SectionHeading eyebrow="Tech Stack" title="My" accent="Skills" />
+      <SectionHeading title="My" accent="Skills" />
 
       <div className="grid items-center gap-12 lg:grid-cols-2">
         {/* Orbit */}
@@ -22,7 +22,7 @@ export function Skills() {
           <div className="absolute h-full w-full rounded-full border border-[var(--border)]" />
           <div className="absolute h-2/3 w-2/3 rounded-full border border-[var(--border)]" />
 
-          <div className="absolute grid h-16 w-16 place-items-center rounded-2xl bg-gradient-brand font-display text-xl font-bold text-white shadow-lg shadow-purple-500/30">
+          <div className="absolute grid h-16 w-16 place-items-center rounded-2xl bg-gradient-brand font-display text-xl font-bold text-[#1b262b] shadow-lg shadow-accent-clay/30">
             {profile.initials}
           </div>
 

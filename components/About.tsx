@@ -11,10 +11,9 @@ export function About() {
   return (
     <section id="about" className="mx-auto max-w-5xl scroll-mt-24 px-4 py-16">
       <SectionHeading
-        eyebrow="About"
         title="A bit about"
         accent="me"
-        subtitle="Full-stack engineer who fell for AI — here's how I think and what I'm building."
+        subtitle="Full-stack engineer who fell for AI; here's how I think and what I'm building."
       />
 
       <motion.div

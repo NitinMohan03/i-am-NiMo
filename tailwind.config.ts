@@ -10,18 +10,19 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Deep near-black indigo base + purple/pink accents
+        // Sage-slate housing ramp: deep console to raised panel
         ink: {
-          950: "#0a0814",
-          900: "#0d0a1f",
-          800: "#141029",
-          700: "#1c1638",
+          950: "#1b262b",
+          900: "#222e34",
+          800: "#2f3e46",
+          700: "#354f52",
         },
+        // Clay = the rare instrument signal; sage = "live"/ok + soft accent
         accent: {
-          purple: "#a855f7",
-          violet: "#8b5cf6",
-          pink: "#ec4899",
-          fuchsia: "#d946ef",
+          clay: "#c97b5a",
+          "clay-deep": "#b3654a",
+          sage: "#84a98c",
+          "sage-light": "#cad2c5",
         },
       },
       fontFamily: {
@@ -29,8 +30,9 @@ const config: Config = {
         display: ["var(--font-display)", "var(--font-sans)", "sans-serif"],
       },
       backgroundImage: {
+        // Subtle clay duotone for identity fills + primary actions (not text)
         "gradient-brand":
-          "linear-gradient(120deg, #a855f7 0%, #d946ef 50%, #ec4899 100%)",
+          "linear-gradient(135deg, #c97b5a 0%, #b3654a 100%)",
       },
       keyframes: {
         "fade-up": {

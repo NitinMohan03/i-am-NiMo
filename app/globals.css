@@ -7,27 +7,29 @@
    flips the surface/text colors. Accent gradient stays the same in both.
 --------------------------------------------------------------------------- */
 :root {
-  --bg: #0d0a1f;
-  --bg-elevated: #141029;
-  --bg-card: rgba(255, 255, 255, 0.03);
-  --border: rgba(255, 255, 255, 0.08);
-  --border-strong: rgba(255, 255, 255, 0.14);
-  --text: #ececf3;
-  --text-muted: #a3a0b8;
-  --dot: 168, 158, 200; /* rgb for the canvas dot-grid */
-  --dot-glow: 217, 70, 239;
+  --bg: #222e34;
+  --bg-elevated: #2f3e46;
+  --bg-card: rgba(202, 210, 197, 0.05);
+  --border: rgba(202, 210, 197, 0.1);
+  --border-strong: rgba(202, 210, 197, 0.18);
+  --text: #cad2c5;
+  --text-muted: #9fb6a6;
+  --accent-ring: #c97b5a;
+  --dot: 132, 169, 140; /* rgb for the canvas dot-grid (sage) */
+  --dot-glow: 201, 123, 90; /* clay */
 }
 
 html.light {
-  --bg: #f4f2fb;
+  --bg: #eaede6;
   --bg-elevated: #ffffff;
-  --bg-card: rgba(13, 10, 31, 0.03);
-  --border: rgba(13, 10, 31, 0.1);
-  --border-strong: rgba(13, 10, 31, 0.18);
-  --text: #1a1530;
-  --text-muted: #585478;
-  --dot: 120, 110, 160;
-  --dot-glow: 168, 85, 247;
+  --bg-card: rgba(47, 62, 70, 0.04);
+  --border: rgba(47, 62, 70, 0.12);
+  --border-strong: rgba(47, 62, 70, 0.2);
+  --text: #2f3e46;
+  --text-muted: #41615a;
+  --accent-ring: #b3654a;
+  --dot: 84, 169, 140;
+  --dot-glow: 179, 101, 74;
 }
 
 * {
@@ -52,15 +54,6 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* Brand gradient text helper */
-.text-gradient {
-  background: linear-gradient(120deg, #a855f7 0%, #d946ef 50%, #ec4899 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
-}
-
 /* Card surface used across sections */
 .surface {
   background-color: var(--bg-card);
@@ -79,6 +72,6 @@ body {
 
 /* Focus ring consistent with brand */
 :focus-visible {
-  outline: 2px solid var(--accent-ring, #a855f7);
+  outline: 2px solid var(--accent-ring, #c97b5a);
   outline-offset: 2px;
 }

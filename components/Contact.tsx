@@ -40,14 +40,11 @@ export function Contact() {
         transition={{ duration: 0.5 }}
         className="surface rounded-3xl p-10 text-center"
       >
-        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--text-muted)]">
-          Get in touch
-        </p>
-        <h2 className="mt-3 font-display text-3xl font-extrabold sm:text-4xl">
-          Let&apos;s build something <span className="text-gradient">together</span>
+        <h2 className="text-balance font-display text-3xl font-extrabold tracking-tight sm:text-4xl">
+          Let&apos;s build something <span className="text-accent-clay">together</span>
         </h2>
-        <p className="mx-auto mt-3 max-w-md text-[var(--text-muted)]">
-          {profile.status}. The fastest way to reach me is email — or grab a link below.
+        <p className="mx-auto mt-4 max-w-md text-pretty text-[var(--text-muted)]">
+          {profile.status}. The fastest way to reach me is email, or grab a link below.
         </p>
 
         <div className="mt-8 grid gap-3 sm:grid-cols-3">
@@ -57,9 +54,9 @@ export function Contact() {
               href={l.href}
               target={l.href.startsWith("http") ? "_blank" : undefined}
               rel="noopener noreferrer"
-              className="surface flex flex-col items-center gap-2 rounded-2xl p-5 transition-all hover:-translate-y-0.5 hover:border-[var(--border-strong)]"
+              className="flex flex-col items-center gap-2 rounded-2xl border border-[var(--border)] bg-[var(--bg-card)] p-5 transition-all hover:-translate-y-0.5 hover:border-[var(--border-strong)] hover:bg-[var(--bg-elevated)]"
             >
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="text-accent-purple">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="text-accent-clay">
                 {l.icon}
               </svg>
               <span className="text-sm font-medium">{l.label}</span>
@@ -72,7 +69,7 @@ export function Contact() {
 
         <a
           href={`mailto:${profile.socials.email}`}
-          className="mt-8 inline-block rounded-full bg-gradient-brand px-6 py-3 font-medium text-white transition-transform hover:scale-[1.03]"
+          className="mt-8 inline-block rounded-full bg-gradient-brand px-6 py-3 font-medium text-[#1b262b] transition-transform hover:scale-[1.03]"
         >
           Say hello →
         </a>

@@ -30,8 +30,8 @@ export function DotGridBackground() {
     const readColors = () => {
       const styles = getComputedStyle(document.documentElement);
       return {
-        dot: styles.getPropertyValue("--dot").trim() || "168, 158, 200",
-        glow: styles.getPropertyValue("--dot-glow").trim() || "217, 70, 239",
+        dot: styles.getPropertyValue("--dot").trim() || "132, 169, 140",
+        glow: styles.getPropertyValue("--dot-glow").trim() || "201, 123, 90",
       };
     };
     let colors = readColors();
