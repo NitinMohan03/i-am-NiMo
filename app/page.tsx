@@ -1,4 +1,5 @@
-import { Nav } from "@/components/Nav";
+import { Sidebar } from "@/components/Sidebar";
+import { MobileBar } from "@/components/MobileBar";
 import { Hero } from "@/components/Hero";
 import { About } from "@/components/About";
 import { Projects } from "@/components/Projects";
@@ -9,16 +10,19 @@ import { Contact, Footer } from "@/components/Contact";
 export default function Home() {
   return (
     <>
-      <Nav />
-      <main id="main">
-        <Hero />
-        <About />
-        <Projects />
-        <GitHubActivity />
-        <Skills />
-        <Contact />
-      </main>
-      <Footer />
+      <Sidebar />
+      <MobileBar />
+      <div className="lg:pl-80">
+        <main id="main">
+          <Hero />
+          <About />
+          <Projects />
+          <GitHubActivity />
+          <Skills />
+          <Contact />
+        </main>
+        <Footer />
+      </div>
     </>
   );
 }

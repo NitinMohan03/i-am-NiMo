@@ -1,6 +1,6 @@
-import Anthropic from "@anthropic-ai/sdk";
 import {
-  CHAT_MODEL,
+  CHAT_MODELS,
+  OPENROUTER_URL,
   MAX_OUTPUT_TOKENS,
   MAX_INPUT_CHARS,
   buildSystemPrompt,
@@ -26,10 +26,10 @@ function rateLimited(ip: string): boolean {
 type IncomingMessage = { role: "user" | "assistant"; content: string };
 
 export async function POST(req: Request) {
-  const apiKey = process.env.ANTHROPIC_API_KEY;
+  const apiKey = process.env.OPENROUTER_API_KEY;
   if (!apiKey) {
     return Response.json(
-      { error: "Chat is not configured. Set ANTHROPIC_API_KEY." },
+      { error: "Chat is not configured. Set OPENROUTER_API_KEY." },
       { status: 503 }
     );
   }
@@ -66,49 +66,96 @@ export async function POST(req: Request) {
     return Response.json({ error: "Message too long." }, { status: 413 });
   }
 
-  const anthropic = new Anthropic({ apiKey });
+  // OpenAI-compatible messages: system prompt first, then the trimmed history.
+  const apiMessages = [
+    { role: "system", content: buildSystemPrompt() },
+    ...trimmed,
+  ];
 
-  try {
-    const stream = anthropic.messages.stream({
-      model: CHAT_MODEL,
-      max_tokens: MAX_OUTPUT_TOKENS,
-      system: buildSystemPrompt(),
-      messages: trimmed,
-    });
+  // Free models flap with upstream 429s — try each until one streams OK.
+  let upstream: Response | null = null;
+  for (const model of CHAT_MODELS) {
+    try {
+      const res = await fetch(OPENROUTER_URL, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${apiKey}`,
+          "Content-Type": "application/json",
+          // Optional attribution shown on the OpenRouter dashboard.
+          "HTTP-Referer": "https://nitinmohan.dev",
+          "X-Title": "Nitin Mohan - Portfolio",
+        },
+        body: JSON.stringify({
+          model,
+          max_tokens: MAX_OUTPUT_TOKENS,
+          stream: true,
+          messages: apiMessages,
+        }),
+      });
+      if (res.ok && res.body) {
+        upstream = res;
+        break;
+      }
+      const detail = await res.text().catch(() => "");
+      console.error("OpenRouter model failed:", model, res.status, detail);
+    } catch (err) {
+      console.error("OpenRouter fetch error:", model, err);
+    }
+  }
 
-    const encoder = new TextEncoder();
-    const readable = new ReadableStream({
-      async start(controller) {
-        try {
-          for await (const event of stream) {
-            if (
-              event.type === "content_block_delta" &&
-              event.delta.type === "text_delta"
-            ) {
-              controller.enqueue(encoder.encode(event.delta.text));
-            }
-          }
-        } catch {
-          controller.enqueue(
-            encoder.encode("\n\n(Sorry — the response was interrupted.)")
-          );
-        } finally {
-          controller.close();
-        }
-      },
-    });
-
-    return new Response(readable, {
-      headers: {
-        "Content-Type": "text/plain; charset=utf-8",
-        "Cache-Control": "no-store",
-      },
-    });
-  } catch (err) {
-    console.error("Anthropic error:", err);
+  if (!upstream || !upstream.body) {
     return Response.json(
       { error: "The assistant is unavailable right now. Please try again." },
       { status: 502 }
     );
   }
+
+  // Re-stream the upstream SSE as plain text deltas to the client.
+  const encoder = new TextEncoder();
+  const decoder = new TextDecoder();
+  const reader = upstream.body.getReader();
+
+  const readable = new ReadableStream({
+    async start(controller) {
+      let buffer = "";
+      try {
+        // eslint-disable-next-line no-constant-condition
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) break;
+          buffer += decoder.decode(value, { stream: true });
+
+          // SSE frames are separated by newlines; each data line is JSON.
+          const lines = buffer.split("\n");
+          buffer = lines.pop() ?? "";
+          for (const line of lines) {
+            const t = line.trim();
+            if (!t.startsWith("data:")) continue;
+            const data = t.slice(5).trim();
+            if (data === "[DONE]") continue;
+            try {
+              const json = JSON.parse(data);
+              const text = json?.choices?.[0]?.delta?.content;
+              if (text) controller.enqueue(encoder.encode(text));
+            } catch {
+              // Ignore keep-alive / partial frames.
+            }
+          }
+        }
+      } catch {
+        controller.enqueue(
+          encoder.encode("\n\n(Sorry — the response was interrupted.)")
+        );
+      } finally {
+        controller.close();
+      }
+    },
+  });
+
+  return new Response(readable, {
+    headers: {
+      "Content-Type": "text/plain; charset=utf-8",
+      "Cache-Control": "no-store",
+    },
+  });
 }

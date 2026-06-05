@@ -13,7 +13,7 @@ const ORBIT = [
 
 export function Skills() {
   return (
-    <section id="skills" className="mx-auto max-w-6xl scroll-mt-24 px-4 py-24">
+    <section id="skills" className="mx-auto max-w-6xl scroll-mt-24 px-4 py-16">
       <SectionHeading eyebrow="Tech Stack" title="My" accent="Skills" />
 
       <div className="grid items-center gap-12 lg:grid-cols-2">

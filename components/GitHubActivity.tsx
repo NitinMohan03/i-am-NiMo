@@ -51,7 +51,7 @@ export async function GitHubActivity() {
   const repos = await getRepos();
 
   return (
-    <section className="mx-auto max-w-6xl scroll-mt-24 px-4 py-24">
+    <section id="github" className="mx-auto max-w-6xl scroll-mt-24 px-4 py-16">
       <SectionHeading
         eyebrow="Open Source"
         title="GitHub"

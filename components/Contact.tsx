@@ -32,7 +32,7 @@ const links = [
 
 export function Contact() {
   return (
-    <section id="contact" className="mx-auto max-w-4xl scroll-mt-24 px-4 py-24">
+    <section id="contact" className="mx-auto max-w-4xl scroll-mt-24 px-4 py-16">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}

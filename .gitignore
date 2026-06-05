@@ -1,6 +1,13 @@
 # source material (not part of the site)
 DetailDocs/
 
+# ai workflow / design tooling (local only)
+.claude/
+.impeccable/
+CLAUDE.md
+PRODUCT.md
+DESIGN.md
+
 # dependencies
 /node_modules
 
