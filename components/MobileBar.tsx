@@ -80,7 +80,7 @@ export function MobileBar() {
               </ul>
               <a
                 href={`mailto:${profile.socials.email}`}
-                className="mt-auto rounded-full bg-gradient-brand px-4 py-3 text-center font-medium text-[#1b262b]"
+                className="mt-auto rounded-full border border-[var(--border-strong)] bg-[var(--bg-card)] px-4 py-3 text-center font-medium text-[var(--text)] transition-colors hover:border-[var(--accent-text)]/40"
               >
                 Get in touch
               </a>
@@ -93,7 +93,7 @@ export function MobileBar() {
       <button
         onClick={() => setChat(true)}
         aria-label="Ask my AI"
-        className="fixed bottom-5 right-5 z-40 flex items-center gap-2 rounded-full bg-gradient-brand px-5 py-3 font-medium text-[#1b262b] shadow-xl shadow-accent-clay/30 lg:hidden"
+        className="fixed bottom-5 right-5 z-40 flex items-center gap-2 rounded-full bg-gradient-brand px-5 py-3 font-medium text-ink-950 shadow-lg shadow-accent-cobalt/15 lg:hidden"
       >
         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
           <path d="M12 2l1.8 5.2L19 9l-5.2 1.8L12 16l-1.8-5.2L5 9l5.2-1.8z" />

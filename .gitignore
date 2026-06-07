@@ -25,6 +25,8 @@ DESIGN.md
 # misc
 .DS_Store
 *.pem
+.playwright-mcp/
+HANDOFF.md
 npm-debug.log*
 .vercel
 next-env.d.ts

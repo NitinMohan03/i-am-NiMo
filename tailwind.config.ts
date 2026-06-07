@@ -10,19 +10,17 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Sage-slate housing ramp: deep console to raised panel
+        // Cyanotype housing ramp: the room IS the blueprint blue, deep Prussian field to raised panel
         ink: {
-          950: "#1b262b",
-          900: "#222e34",
-          800: "#2f3e46",
-          700: "#354f52",
+          950: "#001634", // Void — deepest layer, dark text on cobalt fills
+          900: "#002f58", // Housing — body bg in dark mode, the blueprint paper itself
+          800: "#133f68", // Surface — elevated panels, input fill
+          700: "#285077", // Riser — raised affordances, border-strong source
         },
-        // Clay = the rare instrument signal; sage = "live"/ok + soft accent
+        // Cobalt = the single instrument-glow accent, a brighter blue lit within the Prussian field
         accent: {
-          clay: "#c97b5a",
-          "clay-deep": "#b3654a",
-          sage: "#84a98c",
-          "sage-light": "#cad2c5",
+          cobalt: "#37a4d5",
+          "cobalt-deep": "#0096c9",
         },
       },
       fontFamily: {
@@ -30,9 +28,8 @@ const config: Config = {
         display: ["var(--font-display)", "var(--font-sans)", "sans-serif"],
       },
       backgroundImage: {
-        // Subtle clay duotone for identity fills + primary actions (not text)
-        "gradient-brand":
-          "linear-gradient(135deg, #c97b5a 0%, #b3654a 100%)",
+        // Cobalt duotone: the instrument-glow fill for identity, CTAs, user bubbles
+        "gradient-brand": "linear-gradient(135deg, #37a4d5 0%, #0096c9 100%)",
       },
       keyframes: {
         "fade-up": {

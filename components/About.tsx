@@ -5,7 +5,7 @@ import { SectionHeading } from "./SectionHeading";
 import { profile } from "@/data/profile";
 
 const card =
-  "surface rounded-3xl p-6 transition-colors hover:border-[var(--border-strong)]";
+  "panel rounded-3xl p-6 transition-colors hover:border-[var(--border-strong)]";
 
 export function About() {
   return (
@@ -17,7 +17,7 @@ export function About() {
       />
 
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 1, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-80px" }}
         transition={{ duration: 0.5 }}
@@ -25,7 +25,7 @@ export function About() {
       >
         {/* Narrative — wide */}
         <div className={`${card} sm:col-span-2`}>
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--text-muted)]">
+          <p className="font-mono text-xs font-semibold uppercase tracking-[0.08em] text-[var(--text-muted)]">
             My mindset
           </p>
           <p className="mt-3 text-sm leading-relaxed text-[var(--text)]/90">
@@ -35,7 +35,7 @@ export function About() {
 
         {/* Currently / focus */}
         <div className={card}>
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--text-muted)]">
+          <p className="font-mono text-xs font-semibold uppercase tracking-[0.08em] text-[var(--text-muted)]">
             Currently
           </p>
           <p className="mt-3 text-sm leading-relaxed text-[var(--text-muted)]">
@@ -45,7 +45,7 @@ export function About() {
 
         {/* What I build — wide */}
         <div className={`${card} sm:col-span-2`}>
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--text-muted)]">
+          <p className="font-mono text-xs font-semibold uppercase tracking-[0.08em] text-[var(--text-muted)]">
             What I build
           </p>
           <div className="mt-4 flex flex-wrap gap-2">
@@ -62,12 +62,12 @@ export function About() {
 
         {/* Location */}
         <div className={card}>
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--text-muted)]">
+          <p className="font-mono text-xs font-semibold uppercase tracking-[0.08em] text-[var(--text-muted)]">
             Based in
           </p>
-          <h4 className="mt-2 font-display text-xl font-bold">
+          <h3 className="mt-2 font-display text-xl font-bold">
             {profile.location.city}
-          </h4>
+          </h3>
           <p className="mt-1 font-mono text-xs text-[var(--text-muted)]">
             {profile.location.coordinates}
           </p>

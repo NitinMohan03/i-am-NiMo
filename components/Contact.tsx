@@ -34,14 +34,14 @@ export function Contact() {
   return (
     <section id="contact" className="mx-auto max-w-4xl scroll-mt-24 px-4 py-16">
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 1, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-80px" }}
         transition={{ duration: 0.5 }}
         className="surface rounded-3xl p-10 text-center"
       >
         <h2 className="text-balance font-display text-3xl font-extrabold tracking-tight sm:text-4xl">
-          Let&apos;s build something <span className="text-accent-clay">together</span>
+          Let&apos;s build something <span className="text-[var(--accent-text)]">together</span>
         </h2>
         <p className="mx-auto mt-4 max-w-md text-pretty text-[var(--text-muted)]">
           {profile.status}. The fastest way to reach me is email, or grab a link below.
@@ -56,7 +56,7 @@ export function Contact() {
               rel="noopener noreferrer"
               className="flex flex-col items-center gap-2 rounded-2xl border border-[var(--border)] bg-[var(--bg-card)] p-5 transition-all hover:-translate-y-0.5 hover:border-[var(--border-strong)] hover:bg-[var(--bg-elevated)]"
             >
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="text-accent-clay">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="text-[var(--accent-text)]">
                 {l.icon}
               </svg>
               <span className="text-sm font-medium">{l.label}</span>
@@ -69,7 +69,7 @@ export function Contact() {
 
         <a
           href={`mailto:${profile.socials.email}`}
-          className="mt-8 inline-block rounded-full bg-gradient-brand px-6 py-3 font-medium text-[#1b262b] transition-transform hover:scale-[1.03]"
+          className="mt-8 inline-block rounded-full bg-gradient-brand px-6 py-3 font-medium text-ink-950 transition-transform hover:scale-[1.03] active:scale-[0.97]"
         >
           Say hello →
         </a>

@@ -50,7 +50,7 @@ export function Sidebar() {
     <aside className="fixed inset-y-0 left-0 z-40 hidden w-80 flex-col border-r border-[var(--border)] bg-[var(--bg-elevated)]/70 backdrop-blur-xl lg:flex">
       {/* Identity */}
       <div className="flex items-center gap-3 px-6 pb-5 pt-7">
-        <Avatar className="h-14 w-14 rounded-2xl text-xl shadow-lg shadow-accent-clay/20" />
+        <Avatar className="h-14 w-14 rounded-2xl text-xl shadow-md shadow-black/10" />
         <div className="min-w-0">
           <p className="truncate font-display text-lg font-bold leading-tight">
             {profile.name}
@@ -98,13 +98,13 @@ export function Sidebar() {
                     strokeWidth="1.8"
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    className={isActive ? "text-accent-clay" : ""}
+                    className={isActive ? "text-[var(--accent-text)]" : ""}
                   >
                     <path d={l.icon} />
                   </svg>
                   {l.label}
                   {isActive && (
-                    <span className="ml-auto h-1.5 w-1.5 rounded-full bg-accent-clay" />
+                    <span className="ml-auto h-1.5 w-1.5 rounded-full bg-accent-cobalt" />
                   )}
                 </a>
               </li>

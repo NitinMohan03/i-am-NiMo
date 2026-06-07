@@ -190,7 +190,7 @@ export const profile = {
       description:
         "Serverless GenAI research assistant: chat with academic PDFs, auto-summaries, and quiz generation grounded in the document via Retrieval-Augmented Generation.",
       tech: ["FastAPI", "RAG", "Pinecone", "Cloud Run", "OpenRouter", "Firebase"],
-      gradient: "from-[#52796F] via-[#3d5a55] to-[#2F3E46]",
+      gradient: "from-[#48a3d2] via-[#006089] to-[#002f58]",
       metrics: [
         { value: "<2s", label: "First Token" },
         { value: "Top-K", label: "Retrieval" },
@@ -213,7 +213,7 @@ export const profile = {
       description:
         "Community safety platform: live incident feed, Mapbox heatmaps, safety-aware route planning, and role-based admin moderation — with a real-time sync layer over WebSockets.",
       tech: ["React", "TypeScript", "Mapbox GL JS", "AWS Cognito", "WebSockets", "Playwright"],
-      gradient: "from-[#84A98C] via-[#52796F] to-[#354F52]",
+      gradient: "from-[#49a2a3] via-[#00666b] to-[#002f58]",
       metrics: [
         { value: "<200ms", label: "Live Sync" },
         { value: "Real-Time", label: "Incident Feed" },
@@ -236,7 +236,7 @@ export const profile = {
       description:
         "Near-real-time Formula 1 tyre-degradation and race-pace anomaly monitoring: a Lambda-style pipeline replaying driver-lap events through Spark Streaming into a live dashboard.",
       tech: ["PySpark", "Kafka", "Redis", "Streamlit", "FastF1", "Docker"],
-      gradient: "from-[#52796F] via-[#3a4f50] to-[#222E34]",
+      gradient: "from-[#5f88bf] via-[#274d80] to-[#042447]",
       metrics: [
         { value: "20 cars", label: "Live Streams" },
         { value: "Sub-sec", label: "Latency" },
@@ -259,7 +259,7 @@ export const profile = {
       description:
         "Natural-language photo album on AWS — upload images and search them with queries like “photos with dogs in a park,” powered by Rekognition labeling and OpenSearch indexing.",
       tech: ["AWS Lambda", "Lex", "Rekognition", "OpenSearch", "API Gateway", "S3"],
-      gradient: "from-[#6b9382] via-[#477063] to-[#2F3E46]",
+      gradient: "from-[#6b8b9d] via-[#2f5264] to-[#052941]",
       metrics: [
         { value: "NL Query", label: "Search" },
         { value: "Auto", label: "Labeling" },
@@ -282,7 +282,7 @@ export const profile = {
       description:
         "Conversational restaurant-recommendation chatbot: collects preferences via Lex, queues with SQS, looks up restaurants in OpenSearch + DynamoDB, and emails suggestions via SES.",
       tech: ["AWS Lambda", "Lex V2", "SQS", "OpenSearch", "DynamoDB", "SES"],
-      gradient: "from-[#84A98C] via-[#4a6b62] to-[#2F3E46]",
+      gradient: "from-[#4899af] via-[#005d73] to-[#002f58]",
       metrics: [
         { value: "Async", label: "Decoupled" },
         { value: "Conv.", label: "Lex Intents" },

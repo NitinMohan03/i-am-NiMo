@@ -7,29 +7,33 @@
    flips the surface/text colors. Accent gradient stays the same in both.
 --------------------------------------------------------------------------- */
 :root {
-  --bg: #222e34;
-  --bg-elevated: #2f3e46;
-  --bg-card: rgba(202, 210, 197, 0.05);
-  --border: rgba(202, 210, 197, 0.1);
-  --border-strong: rgba(202, 210, 197, 0.18);
-  --text: #cad2c5;
-  --text-muted: #9fb6a6;
-  --accent-ring: #c97b5a;
-  --dot: 132, 169, 140; /* rgb for the canvas dot-grid (sage) */
-  --dot-glow: 201, 123, 90; /* clay */
+  /* Dark: cyanotype housing — the room IS the blueprint blue, cobalt instrument-glow accent */
+  --bg: #002f58;
+  --bg-elevated: #133f68;
+  --bg-card: rgba(255, 255, 255, 0.06);
+  --border: rgba(255, 255, 255, 0.12);
+  --border-strong: rgba(255, 255, 255, 0.28);
+  --text: #e7f0f8;
+  --text-muted: #9dadbe; /* 5.92:1 on housing — verified AA, not chosen for elegance */
+  --accent-ring: #37a4d5;
+  --accent-text: #37a4d5; /* cobalt on Prussian-blue housing = 4.8:1 */
+  --dot: 40, 80, 119; /* dim ink-blue — drafting grid at rest */
+  --dot-glow: 55, 164, 213; /* cobalt — the grid lights up like an instrument under the cursor */
 }
 
 html.light {
-  --bg: #eaede6;
+  /* Light: blueline paper — pale cyanotype negative, cobalt-deep ink accent (darkened for AA on light) */
+  --bg: #eff6fd;
   --bg-elevated: #ffffff;
-  --bg-card: rgba(47, 62, 70, 0.04);
-  --border: rgba(47, 62, 70, 0.12);
-  --border-strong: rgba(47, 62, 70, 0.2);
-  --text: #2f3e46;
-  --text-muted: #41615a;
-  --accent-ring: #b3654a;
-  --dot: 84, 169, 140;
-  --dot-glow: 179, 101, 74;
+  --bg-card: rgba(1, 52, 94, 0.05);
+  --border: rgba(1, 52, 94, 0.14);
+  --border-strong: rgba(1, 52, 94, 0.3);
+  --text: #01345e;
+  --text-muted: #52657a; /* 5.5:1 on paper */
+  --accent-ring: #004e8e;
+  --accent-text: #004e8e; /* cobalt-deep on light = 7.8:1 (full cobalt only hits ~3:1) */
+  --dot: 82, 101, 122;
+  --dot-glow: 0, 78, 142;
 }
 
 * {
@@ -54,11 +58,20 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* Card surface used across sections */
+/* Floating glass: reserved for top-level panels that overlay the dot-grid
+   (sidebar, chat console, contact, orbit tags). Reveals the live background. */
 .surface {
   background-color: var(--bg-card);
   border: 1px solid var(--border);
   backdrop-filter: blur(12px);
+}
+
+/* Solid tonal panel: the resting card surface inside sections. Sits one tonal
+   step above the Housing body (Surface over Housing), no blur, so the section
+   grids read as flat instrumentation, not stacked glass. */
+.panel {
+  background-color: var(--bg-elevated);
+  border: 1px solid var(--border);
 }
 
 /* Custom scrollbar (dark-friendly) */
@@ -72,6 +85,6 @@ body {
 
 /* Focus ring consistent with brand */
 :focus-visible {
-  outline: 2px solid var(--accent-ring, #c97b5a);
+  outline: 2px solid var(--accent-ring, #37a4d5);
   outline-offset: 2px;
 }

@@ -18,16 +18,16 @@ export function Skills() {
 
       <div className="grid items-center gap-12 lg:grid-cols-2">
         {/* Orbit */}
-        <div className="relative mx-auto grid h-[320px] w-[320px] place-items-center motion-reduce:[&_*]:!animate-none">
+        <div className="relative mx-auto grid h-[380px] w-[380px] place-items-center motion-reduce:[&_*]:!animate-none">
           <div className="absolute h-full w-full rounded-full border border-[var(--border)]" />
           <div className="absolute h-2/3 w-2/3 rounded-full border border-[var(--border)]" />
 
-          <div className="absolute grid h-16 w-16 place-items-center rounded-2xl bg-gradient-brand font-display text-xl font-bold text-[#1b262b] shadow-lg shadow-accent-clay/30">
+          <div className="absolute grid h-16 w-16 place-items-center rounded-2xl bg-gradient-brand font-display text-xl font-bold text-ink-950 transition-transform duration-300 hover:scale-110 cursor-default select-none">
             {profile.initials}
           </div>
 
           {ORBIT.map((ring, ri) => {
-            const radius = ri === 0 ? 105 : 158;
+            const radius = ri === 0 ? 128 : 185;
             const dur = ri === 0 ? "24s" : "36s";
             return (
               <div
@@ -67,19 +67,19 @@ export function Skills() {
           {profile.skills.map((group, gi) => (
             <motion.div
               key={group.label}
-              initial={{ opacity: 0, x: 16 }}
+              initial={{ opacity: 1, x: 16 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.4, delay: gi * 0.05 }}
             >
-              <h3 className="mb-2 text-sm font-semibold uppercase tracking-wider text-[var(--text-muted)]">
+              <h3 className="mb-2 font-mono text-xs font-semibold uppercase tracking-[0.08em] text-[var(--text-muted)]">
                 {group.label}
               </h3>
               <div className="flex flex-wrap gap-2">
                 {group.items.map((item) => (
                   <span
                     key={item}
-                    className="surface rounded-lg px-3 py-1 text-sm transition-colors hover:border-[var(--border-strong)]"
+                    className="panel rounded-lg px-3 py-1 text-sm transition-colors hover:border-[var(--border-strong)]"
                   >
                     {item}
                   </span>

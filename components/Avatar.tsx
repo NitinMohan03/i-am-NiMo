@@ -18,9 +18,9 @@ export function Avatar({ className = "" }: { className?: string }) {
     <div
       aria-label={profile.name}
       role="img"
-      className={`grid shrink-0 place-items-center overflow-hidden bg-gradient-brand font-display font-bold leading-none text-[#1b262b] ${className}`}
+      className={`grid shrink-0 place-items-center overflow-hidden border border-[var(--border)] bg-[var(--bg-card)] font-display font-bold leading-none text-[var(--accent-text)] ${className}`}
     >
-      <span className="leading-none drop-shadow">{profile.initials}</span>
+      <span className="leading-none">{profile.initials}</span>
     </div>
   );
 }
