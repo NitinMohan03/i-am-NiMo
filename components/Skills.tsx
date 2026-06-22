@@ -17,8 +17,11 @@ export function Skills() {
       <SectionHeading title="My" accent="Skills" />
 
       <div className="grid items-center gap-12 lg:grid-cols-2">
-        {/* Orbit */}
-        <div className="relative mx-auto grid h-[380px] w-[380px] place-items-center motion-reduce:[&_*]:!animate-none">
+        {/* Orbit — sized off a --orbit var so radii scale with the viewport (no mobile overflow) */}
+        <div
+          className="relative mx-auto grid aspect-square place-items-center overflow-hidden motion-reduce:[&_*]:!animate-none"
+          style={{ width: "var(--orbit)", ["--orbit" as string]: "min(380px, 86vw)" } as React.CSSProperties}
+        >
           <div className="absolute h-full w-full rounded-full border border-[var(--border)]" />
           <div className="absolute h-2/3 w-2/3 rounded-full border border-[var(--border)]" />
 
@@ -27,7 +30,7 @@ export function Skills() {
           </div>
 
           {ORBIT.map((ring, ri) => {
-            const radius = ri === 0 ? 128 : 185;
+            const radius = ri === 0 ? 0.28 : 0.4; // fraction of --orbit
             const dur = ri === 0 ? "24s" : "36s";
             return (
               <div
@@ -42,7 +45,7 @@ export function Skills() {
                       key={tech}
                       className="absolute left-1/2 top-1/2"
                       style={{
-                        transform: `rotate(${angle}deg) translateX(${radius}px)`,
+                        transform: `rotate(${angle}deg) translateX(calc(var(--orbit) * ${radius}))`,
                       }}
                     >
                       <span

@@ -7,33 +7,37 @@
    flips the surface/text colors. Accent gradient stays the same in both.
 --------------------------------------------------------------------------- */
 :root {
-  /* Dark: cyanotype housing — the room IS the blueprint blue, cobalt instrument-glow accent */
-  --bg: #002f58;
-  --bg-elevated: #133f68;
-  --bg-card: rgba(255, 255, 255, 0.06);
-  --border: rgba(255, 255, 255, 0.12);
+  /* Dark: slate-navy surfaces, teal/mint accent, mint-tinted linework (cr0ybot) */
+  --bg: #272d43; /* darkened so raised panels separate from the field */
+  --bg-elevated: #363d5a; /* panel surface, one clear tonal step up */
+  --bg-card: rgba(255, 255, 255, 0.05);
+  --border: rgba(255, 255, 255, 0.14); /* brighter so cards read as edged */
   --border-strong: rgba(255, 255, 255, 0.28);
-  --text: #e7f0f8;
-  --text-muted: #9dadbe; /* 5.92:1 on housing — verified AA, not chosen for elegance */
-  --accent-ring: #37a4d5;
-  --accent-text: #37a4d5; /* cobalt on Prussian-blue housing = 4.8:1 */
-  --dot: 40, 80, 119; /* dim ink-blue — drafting grid at rest */
-  --dot-glow: 55, 164, 213; /* cobalt — the grid lights up like an instrument under the cursor */
+  --surface-raised: #525e65; /* slate-teal: secondary buttons, active nav */
+  --surface-raised-hover: #5f6c74;
+  --text: #dbe8e4; /* mint-tinted off-white — primary linework (~11.7:1) */
+  --text-muted: #a3acc2; /* ~5.3:1 on the darker field — AA */
+  --accent-ring: #84dcc6;
+  --accent-text: #84dcc6; /* mint on slate-navy = ~9:1 */
+  --dot: 90, 100, 124; /* muted slate — grid at rest */
+  --dot-glow: 132, 220, 198; /* mint — grid lights up under the cursor */
 }
 
 html.light {
-  /* Light: blueline paper — pale cyanotype negative, cobalt-deep ink accent (darkened for AA on light) */
-  --bg: #eff6fd;
+  /* Light: cool off-white paper, deep-teal ink accent (darkened for AA) */
+  --bg: #eef0f5;
   --bg-elevated: #ffffff;
-  --bg-card: rgba(1, 52, 94, 0.05);
-  --border: rgba(1, 52, 94, 0.14);
-  --border-strong: rgba(1, 52, 94, 0.3);
-  --text: #01345e;
-  --text-muted: #52657a; /* 5.5:1 on paper */
-  --accent-ring: #004e8e;
-  --accent-text: #004e8e; /* cobalt-deep on light = 7.8:1 (full cobalt only hits ~3:1) */
-  --dot: 82, 101, 122;
-  --dot-glow: 0, 78, 142;
+  --bg-card: rgba(31, 37, 55, 0.04);
+  --border: rgba(31, 37, 55, 0.14);
+  --border-strong: rgba(31, 37, 55, 0.28);
+  --surface-raised: #525e65; /* slate-teal pill, white text in both themes */
+  --surface-raised-hover: #46515a;
+  --text: #232838;
+  --text-muted: #5a6276; /* ~5.6:1 on paper */
+  --accent-ring: #2c726b;
+  --accent-text: #2c726b; /* deep teal on light = ~5:1 (mint only ~1.4:1) */
+  --dot: 120, 128, 148;
+  --dot-glow: 79, 179, 164;
 }
 
 * {
@@ -48,6 +52,13 @@ html {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
 
@@ -72,6 +83,7 @@ body {
 .panel {
   background-color: var(--bg-elevated);
   border: 1px solid var(--border);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25), 0 8px 24px -16px rgba(0, 0, 0, 0.5);
 }
 
 /* Custom scrollbar (dark-friendly) */

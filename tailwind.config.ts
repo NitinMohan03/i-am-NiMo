@@ -10,17 +10,18 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Cyanotype housing ramp: the room IS the blueprint blue, deep Prussian field to raised panel
+        // Slate-navy housing ramp: deep desaturated blue surfaces (cr0ybot palette)
         ink: {
-          950: "#001634", // Void — deepest layer, dark text on cobalt fills
-          900: "#002f58", // Housing — body bg in dark mode, the blueprint paper itself
-          800: "#133f68", // Surface — elevated panels, input fill
-          700: "#285077", // Riser — raised affordances, border-strong source
+          950: "#1d2233", // deepest — dark text on mint/teal fills
+          900: "#262c40", // body bg tone in dark mode
+          800: "#313850", // elevated panels, input fill
+          700: "#3c4460", // raised affordances, border-strong source
         },
-        // Cobalt = the single instrument-glow accent, a brighter blue lit within the Prussian field
+        // Teal/mint = the single accent (kept under the `cobalt` keys so existing
+        // utility classes — bg-accent-cobalt, shadow-accent-cobalt — keep working)
         accent: {
-          cobalt: "#37a4d5",
-          "cobalt-deep": "#0096c9",
+          cobalt: "#84dcc6", // mint — fills, glows, active markers
+          "cobalt-deep": "#4fb3a4", // teal — gradient end, deeper accent
         },
       },
       fontFamily: {
@@ -28,8 +29,8 @@ const config: Config = {
         display: ["var(--font-display)", "var(--font-sans)", "sans-serif"],
       },
       backgroundImage: {
-        // Cobalt duotone: the instrument-glow fill for identity, CTAs, user bubbles
-        "gradient-brand": "linear-gradient(135deg, #37a4d5 0%, #0096c9 100%)",
+        // Mint→teal duotone: the fill for identity, CTAs, user bubbles, skill tiles
+        "gradient-brand": "linear-gradient(135deg, #8ee3d0 0%, #4fb3a4 100%)",
       },
       keyframes: {
         "fade-up": {

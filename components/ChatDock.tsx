@@ -110,7 +110,7 @@ export function ChatDock() {
             type="submit"
             disabled={loading || !input.trim()}
             aria-label="Send message"
-            className="grid h-8 w-8 shrink-0 place-items-center rounded-xl bg-gradient-brand text-ink-950 transition-opacity disabled:opacity-40"
+            className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-gradient-brand text-ink-950 transition-opacity disabled:opacity-40"
           >
             <SendIcon />
           </button>

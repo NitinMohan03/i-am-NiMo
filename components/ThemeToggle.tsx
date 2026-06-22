@@ -10,7 +10,7 @@ export function ThemeToggle() {
     <button
       onClick={toggle}
       aria-label={`Switch to ${isDark ? "light" : "dark"} mode`}
-      className="grid h-9 w-9 place-items-center rounded-full border border-[var(--border)] bg-[var(--bg-card)] text-[var(--text-muted)] transition-colors hover:text-[var(--text)]"
+      className="grid h-10 w-10 place-items-center rounded-full bg-[var(--surface-raised)] text-[var(--text)] transition-colors hover:bg-[var(--surface-raised-hover)]"
     >
       {isDark ? (
         // Sun

@@ -7,6 +7,7 @@ import {
   useEffect,
   useState,
 } from "react";
+import { MotionConfig } from "framer-motion";
 
 type Theme = "dark" | "light";
 type Ctx = { theme: Theme; toggle: () => void };
@@ -38,7 +39,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
   return (
     <ThemeContext.Provider value={{ theme, toggle }}>
-      {children}
+      <MotionConfig reducedMotion="user">{children}</MotionConfig>
     </ThemeContext.Provider>
   );
 }

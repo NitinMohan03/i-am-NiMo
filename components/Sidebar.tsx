@@ -85,7 +85,7 @@ export function Sidebar() {
                   href={l.href}
                   className={`group flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm transition-colors ${
                     isActive
-                      ? "bg-[var(--bg-card)] font-medium text-[var(--text)]"
+                      ? "bg-[var(--surface-raised)] font-medium text-[var(--text)] shadow-sm shadow-black/20"
                       : "text-[var(--text-muted)] hover:bg-[var(--bg-card)] hover:text-[var(--text)]"
                   }`}
                 >
@@ -113,6 +113,19 @@ export function Sidebar() {
         </ul>
       </nav>
 
+      {/* Primary CTA */}
+      <div className="px-6 pb-3">
+        <a
+          href={`mailto:${profile.socials.email}`}
+          className="flex items-center justify-center gap-2 rounded-full bg-gradient-brand px-4 py-2.5 text-sm font-semibold text-ink-950 shadow-sm transition-transform hover:scale-[1.02] active:scale-[0.98]"
+        >
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M4 4h16v16H4zM4 6l8 6 8-6" />
+          </svg>
+          Get in touch
+        </a>
+      </div>
+
       {/* Socials + theme */}
       <div className="flex items-center justify-between px-6 pb-4">
         <div className="flex gap-1.5">
@@ -123,7 +136,7 @@ export function Sidebar() {
               target={s.href.startsWith("http") ? "_blank" : undefined}
               rel="noopener noreferrer"
               aria-label={s.label}
-              className="grid h-9 w-9 place-items-center rounded-full border border-[var(--border)] bg-[var(--bg-card)] text-[var(--text-muted)] transition-colors hover:text-[var(--text)]"
+              className="grid h-10 w-10 place-items-center rounded-full border border-[var(--border)] bg-[var(--bg-card)] text-[var(--text-muted)] transition-colors hover:border-[var(--accent-text)]/40 hover:text-[var(--accent-text)]"
             >
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                 <path d={s.icon} />

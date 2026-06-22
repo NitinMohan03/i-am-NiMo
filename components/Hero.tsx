@@ -31,16 +31,6 @@ function Counter({ value }: { value: string }) {
 }
 
 export function Hero() {
-  useEffect(() => {
-    const s = "font-family:monospace;";
-    console.log("%cEngine room.", s + "color:#3c6e71;font-size:14px;font-weight:bold;");
-    console.log(
-      "%cStack: Next.js 14 · TypeScript · Tailwind · Framer Motion · OpenRouter",
-      s + "color:#d9d9d9;font-size:11px;"
-    );
-    console.log(`%c${profile.socials.github}`, s + "color:#284b63;font-size:11px;");
-  }, []);
-
   return (
     <section id="home" className="scroll-mt-24 px-4 pt-24 pb-20 lg:pt-16 lg:pb-28">
       <motion.div
@@ -64,7 +54,7 @@ export function Hero() {
             <span className="text-[var(--accent-text)]">{profile.lastName}</span>
           </span>
         </h1>
-        <p className="mt-5 max-w-2xl text-lg leading-relaxed text-[var(--text-muted)]">
+        <p className="mt-5 max-w-2xl text-lg leading-relaxed text-[var(--text)]">
           {profile.intro}
         </p>
 
@@ -87,7 +77,7 @@ export function Hero() {
               key={h.label}
               className={i > 0 ? "sm:border-l sm:border-[var(--border)] sm:pl-8" : ""}
             >
-              <dt className="font-display text-3xl font-bold leading-none text-[var(--accent-text)] tabular-nums sm:text-4xl">
+              <dt className="font-display text-3xl font-bold leading-none text-[var(--text)] tabular-nums sm:text-4xl">
                 <Counter value={h.value} />
               </dt>
               <dd className="mt-1.5 font-mono text-[11px] uppercase tracking-wider text-[var(--text-muted)]">
