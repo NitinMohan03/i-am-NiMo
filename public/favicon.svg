@@ -1,11 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <defs>
-    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#8ee3d0"/>
-      <stop offset="1" stop-color="#4fb3a4"/>
-    </linearGradient>
-  </defs>
-  <rect width="64" height="64" rx="16" fill="url(#g)"/>
-  <text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle"
-        font-family="Segoe UI, system-ui, sans-serif" font-size="30" font-weight="800" fill="#1d2233">NM</text>
+  <!-- Coral Dark: the project-number badge, shrunk to a mark. -->
+  <rect width="64" height="64" rx="4" fill="#f9765d"/>
+  <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle"
+        font-family="JetBrains Mono, ui-monospace, SFMono-Regular, Menlo, monospace"
+        font-size="30" font-weight="700" letter-spacing="-1" fill="#151a22">NM</text>
 </svg>
