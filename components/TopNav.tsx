@@ -36,7 +36,7 @@ export function TopNav() {
 
         {/* Below sm the links scroll sideways in one row instead of wrapping
             the header to three lines. */}
-        <nav className="thin-scroll -mx-1 flex max-w-full flex-nowrap items-center gap-x-5 overflow-x-auto px-1 sm:mx-0 sm:flex-wrap sm:gap-x-[clamp(14px,3vw,40px)] sm:overflow-visible sm:px-0">
+        <nav className="no-scrollbar -mx-1 flex max-w-full flex-nowrap items-center gap-x-5 overflow-x-auto px-1 sm:mx-0 sm:flex-wrap sm:gap-x-[clamp(14px,3vw,40px)] sm:overflow-visible sm:px-0">
           {LINKS.map((l) => (
             <a
               key={l.spy}
