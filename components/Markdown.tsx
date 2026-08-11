@@ -15,18 +15,14 @@ export function Markdown({ children }: { children: string }) {
         components={{
           p: ({ children }) => <p>{children}</p>,
           strong: ({ children }) => (
-            <strong className="font-semibold text-[var(--text)]">
-              {children}
-            </strong>
+            <strong className="font-semibold text-ink">{children}</strong>
           ),
           em: ({ children }) => <em className="italic">{children}</em>,
           ul: ({ children }) => (
-            <ul className="list-disc space-y-1 pl-5 marker:text-[var(--accent-text)]">
-              {children}
-            </ul>
+            <ul className="list-disc space-y-1 pl-5 marker:text-coral">{children}</ul>
           ),
           ol: ({ children }) => (
-            <ol className="list-decimal space-y-1 pl-5 marker:text-[var(--text-muted)]">
+            <ol className="list-decimal space-y-1 pl-5 marker:text-ink-dim">
               {children}
             </ol>
           ),
@@ -36,7 +32,7 @@ export function Markdown({ children }: { children: string }) {
               href={href}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-medium text-[var(--accent-text)] underline underline-offset-2 hover:text-[var(--accent-text)]"
+              className="font-medium text-coral underline underline-offset-2 hover:text-coral-light"
             >
               {children}
             </a>
@@ -51,30 +47,28 @@ export function Markdown({ children }: { children: string }) {
             <h5 className="mt-1 font-display text-sm font-bold">{children}</h5>
           ),
           code: ({ children }) => (
-            <code className="rounded bg-[var(--bg-card)] px-1 py-0.5 font-mono text-[0.8em]">
+            <code className="bg-white/[0.06] px-1 py-0.5 font-mono text-[0.8em]">
               {children}
             </code>
           ),
           blockquote: ({ children }) => (
-            <blockquote className="border-l border-[var(--border-strong)] pl-3 text-[var(--text-muted)]">
+            <blockquote className="border-l-2 border-coral pl-3 text-ink-muted">
               {children}
             </blockquote>
           ),
-          hr: () => <hr className="border-[var(--border)]" />,
+          hr: () => <hr className="border-line" />,
           table: ({ children }) => (
             <div className="overflow-x-auto">
               <table className="w-full border-collapse text-xs">{children}</table>
             </div>
           ),
           th: ({ children }) => (
-            <th className="border border-[var(--border)] px-2 py-1 text-left font-semibold">
+            <th className="border border-line px-2 py-1 text-left font-semibold">
               {children}
             </th>
           ),
           td: ({ children }) => (
-            <td className="border border-[var(--border)] px-2 py-1 align-top">
-              {children}
-            </td>
+            <td className="border border-line px-2 py-1 align-top">{children}</td>
           ),
         }}
       >

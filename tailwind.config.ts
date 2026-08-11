@@ -1,7 +1,6 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
-  darkMode: "class",
   content: [
     "./app/**/*.{ts,tsx}",
     "./components/**/*.{ts,tsx}",
@@ -10,46 +9,51 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Slate-navy housing ramp: deep desaturated blue surfaces (cr0ybot palette)
-        ink: {
-          950: "#1d2233", // deepest — dark text on mint/teal fills
-          900: "#262c40", // body bg tone in dark mode
-          800: "#313850", // elevated panels, input fill
-          700: "#3c4460", // raised affordances, border-strong source
+        // Coral Dark. Dark-only: one near-black ground, one raised step, one accent.
+        ground: {
+          DEFAULT: "#151a22", // page + section field; also the text color on coral fills
+          panel: "#1b212b", // raised blocks: thumbs, quote cards, chat panel
         },
-        // Teal/mint = the single accent (kept under the `cobalt` keys so existing
-        // utility classes — bg-accent-cobalt, shadow-accent-cobalt — keep working)
-        accent: {
-          cobalt: "#84dcc6", // mint — fills, glows, active markers
-          "cobalt-deep": "#4fb3a4", // teal — gradient end, deeper accent
+        ink: {
+          DEFAULT: "#e9edf3", // headings, primary copy
+          soft: "#c3cbd8", // secondary copy
+          muted: "#99a3b2", // body paragraphs, nav at rest
+          dim: "#7d8798", // mono captions, footer meta
+        },
+        coral: {
+          DEFAULT: "#f9765d", // the single accent — eyebrows, rules, CTAs, numbers
+          light: "#ffa08c", // hover
+          tint: "#ffb5a4", // accent text on tinted fills
+        },
+        // Hairlines carry the structure: cards are 1px grids, not shadows.
+        line: {
+          DEFAULT: "rgba(255,255,255,0.09)",
+          soft: "rgba(255,255,255,0.07)",
+          strong: "rgba(255,255,255,0.14)",
         },
       },
       fontFamily: {
         sans: ["var(--font-sans)", "system-ui", "sans-serif"],
         display: ["var(--font-display)", "var(--font-sans)", "sans-serif"],
-      },
-      backgroundImage: {
-        // Mint→teal duotone: the fill for identity, CTAs, user bubbles, skill tiles
-        "gradient-brand": "linear-gradient(135deg, #8ee3d0 0%, #4fb3a4 100%)",
+        mono: ["var(--font-mono)", "ui-monospace", "monospace"],
       },
       keyframes: {
-        "fade-up": {
-          "0%": { opacity: "0", transform: "translateY(12px)" },
-          "100%": { opacity: "1", transform: "translateY(0)" },
-        },
         float: {
           "0%, 100%": { transform: "translateY(0)" },
-          "50%": { transform: "translateY(-8px)" },
+          "50%": { transform: "translateY(-10px)" },
         },
-        "bounce-slow": {
-          "0%, 100%": { transform: "translateY(0)", opacity: "0.4" },
-          "50%": { transform: "translateY(6px)", opacity: "1" },
+        spin: {
+          to: { transform: "rotate(360deg)" },
+        },
+        blink: {
+          "0%, 100%": { opacity: "1" },
+          "50%": { opacity: "0.15" },
         },
       },
       animation: {
-        "fade-up": "fade-up 0.6s ease-out both",
-        float: "float 6s ease-in-out infinite",
-        "bounce-slow": "bounce-slow 1.8s ease-in-out infinite",
+        float: "float 7s ease-in-out infinite",
+        "spin-slow": "spin 26s linear infinite",
+        blink: "blink 2.6s ease-in-out infinite",
       },
     },
   },

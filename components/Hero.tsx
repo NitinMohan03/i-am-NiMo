@@ -1,92 +1,125 @@
-"use client";
-
-import { motion, animate } from "framer-motion";
-import { useEffect, useRef } from "react";
+import Image from "next/image";
 import { profile } from "@/data/profile";
-
-function Counter({ value }: { value: string }) {
-  const ref = useRef<HTMLSpanElement>(null);
-
-  useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const match = value.match(/^([\d.]+)(.*)/);
-    if (!match || !ref.current) return;
-    const target = parseFloat(match[1]);
-    const suffix = match[2];
-    const decimals = match[1].includes(".") ? (match[1].split(".")[1]?.length ?? 0) : 0;
-    const controls = animate(0, target, {
-      duration: 1.4,
-      ease: [0.22, 1, 0.36, 1],
-      onUpdate(v) {
-        if (ref.current) {
-          ref.current.textContent =
-            (decimals > 0 ? v.toFixed(decimals) : Math.floor(v).toString()) + suffix;
-        }
-      },
-    });
-    return () => controls.stop();
-  }, [value]);
-
-  return <span ref={ref}>{value}</span>;
-}
 
 export function Hero() {
   return (
-    <section id="home" className="scroll-mt-24 px-4 pt-24 pb-20 lg:pt-16 lg:pb-28">
-      <motion.div
-        initial={{ opacity: 0, y: 16 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, ease: "easeOut" }}
-        className="mx-auto max-w-5xl"
-      >
-        <p className="font-mono text-xs uppercase tracking-[0.12em] text-[var(--accent-text)]">
-          {profile.title} · {profile.education[0].school} M.S. CS
-        </p>
-        <h1 className="mt-4">
-          <span className="block font-sans text-xl font-light leading-tight text-[var(--text-muted)] sm:text-2xl">
-            Hi, I&apos;m
+    <section
+      id="top"
+      data-spy="hero"
+      className="relative z-[1] grid min-h-svh items-center gap-[clamp(32px,6vw,88px)] px-[clamp(20px,5vw,72px)] pb-24 pt-[132px] [grid-template-columns:repeat(auto-fit,minmax(min(100%,400px),1fr))]"
+    >
+      <div className="flex flex-col items-start gap-[26px]">
+        <div
+          data-reveal="up"
+          data-delay="0"
+          className="flex items-center gap-3 rounded-full border border-coral/30 bg-coral/[0.08] py-2 pl-3 pr-4"
+        >
+          <span className="h-[7px] w-[7px] rounded-full bg-coral shadow-[0_0_0_4px_rgba(249,118,93,0.18)]" />
+          <span className="font-mono text-[11.5px] uppercase tracking-[0.06em] text-coral-tint">
+            {profile.status}
+          </span>
+        </div>
+
+        <h1 className="m-0 font-display font-extrabold leading-[0.94] tracking-[-0.035em] text-ink">
+          <span
+            data-reveal="up"
+            data-delay="80"
+            className="block text-[clamp(38px,5.2vw,74px)]"
+          >
+            Hello<span className="text-coral">.</span>
           </span>
           <span
-            className="block font-display font-extrabold leading-none tracking-tight"
-            style={{ fontSize: "clamp(3rem, 9vw, 5rem)" }}
+            data-reveal="up"
+            data-delay="160"
+            className="flex items-center gap-[22px] text-[clamp(38px,5.2vw,74px)] font-semibold text-ink-muted"
           >
-            {profile.firstName}{" "}
-            <span className="text-[var(--accent-text)]">{profile.lastName}</span>
+            <span
+              data-rule="1"
+              className="block h-0.5 w-[clamp(44px,7vw,104px)] origin-left scale-x-0 bg-coral transition-transform delay-[260ms] duration-[900ms] ease-out"
+            />
+            I&apos;m {profile.firstName}
+          </span>
+          <span
+            data-reveal="up"
+            data-delay="240"
+            className="mt-1.5 block text-[clamp(46px,7.4vw,104px)]"
+          >
+            {profile.title}
           </span>
         </h1>
-        <p className="mt-5 max-w-2xl text-lg leading-relaxed text-[var(--text)]">
-          {profile.intro}
+
+        <p
+          data-reveal="up"
+          data-delay="320"
+          className="m-0 max-w-[46ch] text-[clamp(16px,1.25vw,19px)] leading-[1.62] text-ink-muted [text-wrap:pretty]"
+        >
+          {profile.tagline}
         </p>
 
-        {/* Target roles */}
-        <div className="mt-5 flex flex-wrap gap-2">
-          {profile.roles.map((r) => (
+        <div
+          data-reveal="up"
+          data-delay="400"
+          className="mt-1.5 flex flex-wrap items-center gap-3.5"
+        >
+          <a
+            href="#contact"
+            data-magnet="1"
+            className="inline-flex items-center gap-2.5 rounded-sm bg-coral px-[26px] py-[15px] text-[15px] font-medium text-ground transition-[transform,box-shadow,background-color] duration-300 ease-out hover:bg-coral-light hover:shadow-[0_14px_34px_-12px_rgba(249,118,93,0.7)]"
+          >
+            Got a project?
+            <span className="font-mono text-[13px]" aria-hidden>
+              &rarr;
+            </span>
+          </a>
+          <a
+            href={`mailto:${profile.socials.email}`}
+            data-magnet="1"
+            className="inline-flex items-center gap-2.5 rounded-sm border border-coral px-[26px] py-[15px] text-[15px] font-medium text-coral transition-[transform,background-color,color] duration-300 ease-out hover:bg-coral/[0.12]"
+          >
+            Email me
+          </a>
+        </div>
+
+        <div data-reveal="up" data-delay="480" className="mt-2.5 flex flex-wrap gap-2.5">
+          {profile.roles.map((role) => (
             <span
-              key={r}
-              className="rounded-full border border-[var(--border)] bg-[var(--bg-card)] px-3 py-1 text-xs font-medium text-[var(--accent-text)]"
+              key={role}
+              className="rounded-full border border-line-strong px-3.5 py-[7px] font-mono text-[11.5px] tracking-[0.02em] text-ink-muted"
             >
-              {r}
+              {role}
             </span>
           ))}
         </div>
+      </div>
 
-        {/* Telemetry readout: real, specific numbers as an instrument strip, not metric cards */}
-        <dl className="mt-8 flex flex-wrap gap-x-8 gap-y-5 border-t border-[var(--border)] pt-6">
-          {profile.highlights.map((h, i) => (
-            <div
-              key={h.label}
-              className={i > 0 ? "sm:border-l sm:border-[var(--border)] sm:pl-8" : ""}
-            >
-              <dt className="font-display text-3xl font-bold leading-none text-[var(--text)] tabular-nums sm:text-4xl">
-                <Counter value={h.value} />
-              </dt>
-              <dd className="mt-1.5 font-mono text-[11px] uppercase tracking-wider text-[var(--text-muted)]">
-                {h.label}
-              </dd>
-            </div>
-          ))}
-        </dl>
-      </motion.div>
+      <div
+        data-reveal="scale"
+        data-delay="220"
+        className="relative flex aspect-square w-full max-w-[460px] items-center justify-center justify-self-center"
+      >
+        <div className="absolute inset-0 rounded-full border border-coral/20" />
+        <div className="absolute inset-[6%] rounded-full border-[14px] border-coral/50" />
+        <div data-orbit="1" className="absolute inset-[6%] animate-spin-slow rounded-full">
+          <span className="absolute left-1/2 top-[-7px] -ml-[6.5px] h-[13px] w-[13px] rounded-full bg-coral" />
+        </div>
+        <div className="relative h-[86%] w-[72%] animate-float overflow-hidden rounded-[999px_999px_4px_4px] border border-line-strong bg-ground-panel">
+          <Image
+            src={profile.photo ?? "/avatar.jpg"}
+            alt={`${profile.name}, ${profile.title}`}
+            fill
+            priority
+            sizes="(max-width: 768px) 60vw, 330px"
+            className="object-cover object-top"
+          />
+        </div>
+      </div>
+
+      <div className="absolute bottom-[34px] left-[clamp(20px,5vw,72px)] flex items-center gap-3">
+        <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-ink-dim">
+          Scroll
+        </span>
+        <span className="block h-px w-[54px] bg-gradient-to-r from-coral to-coral/0" />
+      </div>
     </section>
   );
 }

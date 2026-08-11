@@ -1,28 +1,25 @@
-import { Sidebar } from "@/components/Sidebar";
-import { MobileBar } from "@/components/MobileBar";
+import { TopNav } from "@/components/TopNav";
 import { Hero } from "@/components/Hero";
 import { About } from "@/components/About";
 import { Projects } from "@/components/Projects";
+import { AskAI } from "@/components/AskAI";
 import { GitHubActivity } from "@/components/GitHubActivity";
-import { Skills } from "@/components/Skills";
-import { Contact, Footer } from "@/components/Contact";
+import { Experience } from "@/components/Experience";
+import { Contact } from "@/components/Contact";
 
 export default function Home() {
   return (
-    <>
-      <Sidebar />
-      <MobileBar />
-      <div className="lg:pl-80">
-        <main id="main">
-          <Hero />
-          <About />
-          <Projects />
-          <GitHubActivity />
-          <Skills />
-          <Contact />
-        </main>
-        <Footer />
-      </div>
-    </>
+    <div className="relative overflow-x-clip bg-ground">
+      <TopNav />
+      <main id="main">
+        <Hero />
+        <About />
+        <Projects />
+        <AskAI />
+        <GitHubActivity />
+        <Experience />
+        <Contact />
+      </main>
+    </div>
   );
 }

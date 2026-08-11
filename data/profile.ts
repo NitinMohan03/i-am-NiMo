@@ -36,8 +36,10 @@ export type Project = {
   tech: string[];
   // Headline numbers shown as small tiles under the title. 2-4 looks best.
   metrics?: Metric[];
-  // Key/value "spec sheet" rows at the bottom of the card. 2-4 looks best.
+  // Key/value "spec sheet" rows. Currently unused by the UI — kept as data.
   specs?: Spec[];
+  // Screenshot shown in the project row. Null renders the hatched placeholder.
+  image?: string | null;
   // Links — set to null where unknown so the UI hides the button.
   repo: string | null;
   demo: string | null;
@@ -94,9 +96,8 @@ export const profile = {
     coordinates: "40.6415° N, 74.0235° W",
   },
 
-  // Avatar: drop a real photo at /public/avatar.jpg and set photo to "/avatar.jpg".
-  // Until then `photo` is null and a styled gradient/initials avatar is shown.
-  photo: null as string | null,
+  // Headshot rendered in the hero portrait mask.
+  photo: "/avatar.jpg" as string | null,
   initials: "NM",
 
   githubUsername: "NitinMohan03",

@@ -1,4 +1,4 @@
-import { SectionHeading } from "./SectionHeading";
+import { SectionHead } from "./SectionHead";
 import { profile } from "@/data/profile";
 
 type Repo = {
@@ -51,58 +51,70 @@ export async function GitHubActivity() {
   const repos = await getRepos();
 
   return (
-    <section id="github" className="mx-auto max-w-6xl scroll-mt-24 px-4 py-16">
-      <SectionHeading
-        title="GitHub"
-        accent="Activity"
-        subtitle="Latest public repositories, fetched live from the GitHub API."
+    <section
+      id="github"
+      data-spy="github"
+      className="relative z-[1] scroll-mt-24 border-t border-line-soft px-[clamp(20px,5vw,72px)] py-[clamp(80px,11vh,140px)]"
+    >
+      <SectionHead
+        index="04"
+        label="Activity"
+        title="Latest from GitHub."
+        maxWidth="max-w-[20ch]"
       />
 
       {repos && repos.length > 0 ? (
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div
+          data-reveal="up"
+          className="grid gap-px border border-line bg-line [grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr))]"
+        >
           {repos.map((r) => (
             <a
               key={r.id}
               href={r.html_url}
               target="_blank"
               rel="noopener noreferrer"
-              className="panel group flex flex-col rounded-2xl p-5 transition-all hover:-translate-y-0.5 hover:border-[var(--border-strong)]"
+              className="group flex flex-col gap-3 bg-ground px-7 py-[30px] transition-colors duration-[400ms] hover:bg-ground-panel"
             >
-              <div className="flex items-center gap-2">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" className="text-[var(--text-muted)]">
-                  <path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.5v-1.7c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 5 18.3 5.3 18.3 5.3c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.8.5 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z" />
-                </svg>
-                <h3 className="truncate font-medium transition-colors group-hover:text-[var(--accent-text)]">
+              <span className="flex items-center gap-2.5">
+                <GitHubMark />
+                <span className="truncate font-display text-lg font-bold tracking-[-0.02em] text-ink transition-colors group-hover:text-coral">
                   {r.name}
-                </h3>
-              </div>
-              <p className="mt-2 line-clamp-2 flex-1 text-sm text-[var(--text-muted)]">
+                </span>
+              </span>
+              <span className="flex-1 text-[15px] leading-[1.7] text-ink-muted [text-wrap:pretty]">
                 {r.description || "No description provided."}
-              </p>
-              <div className="mt-4 flex items-center gap-4 text-xs text-[var(--text-muted)]">
+              </span>
+              <span className="mt-auto flex flex-wrap items-center gap-4 pt-2 font-mono text-[11.5px] text-ink-dim">
                 {r.language && (
                   <span className="flex items-center gap-1.5">
                     <span
                       className="h-2.5 w-2.5 rounded-full"
-                      style={{ background: LANG_COLOR[r.language] || "#888" }}
+                      style={{ background: LANG_COLOR[r.language] || "#7d8798" }}
                     />
                     {r.language}
                   </span>
                 )}
-                <span className="flex items-center gap-1">★ {r.stargazers_count}</span>
-                <span className="flex items-center gap-1">⑂ {r.forks_count}</span>
-              </div>
+                <span className="flex items-center gap-1.5">
+                  <StarIcon />
+                  {r.stargazers_count}
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <ForkIcon />
+                  {r.forks_count}
+                </span>
+              </span>
             </a>
           ))}
         </div>
       ) : (
-        <p className="text-center text-[var(--text-muted)]">
+        <p data-reveal="up" className="text-[16px] leading-[1.75] text-ink-muted">
           Couldn&apos;t load live GitHub data right now;{" "}
           <a
             href={profile.socials.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="font-medium text-[var(--accent-text)] hover:underline"
+            className="text-coral hover:text-coral-light"
           >
             browse the repos directly
           </a>
@@ -110,17 +122,46 @@ export async function GitHubActivity() {
         </p>
       )}
 
-      <div className="mt-10 text-center">
+      <div data-reveal="up" data-delay="80" className="mt-10">
         <a
           href={profile.socials.github}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--bg-card)] px-5 py-2.5 text-sm font-medium transition-colors hover:border-[var(--border-strong)]"
+          className="inline-flex items-center gap-2.5 rounded-sm border border-coral/35 bg-coral/[0.12] px-[22px] py-3 text-[14.5px] text-coral transition-colors duration-300 hover:bg-coral hover:text-ground"
         >
           View all on GitHub
-          <span aria-hidden>→</span>
+          <span className="font-mono text-xs" aria-hidden>
+            &#8599;
+          </span>
         </a>
       </div>
     </section>
+  );
+}
+
+function GitHubMark() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" className="shrink-0 text-ink-dim" aria-hidden>
+      <path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.5v-1.7c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 5 18.3 5.3 18.3 5.3c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.8.5 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z" />
+    </svg>
+  );
+}
+
+function StarIcon() {
+  return (
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" aria-label="stars">
+      <path d="m12 3 2.9 5.9 6.5.9-4.7 4.6 1.1 6.5L12 17.8 6.2 20.9l1.1-6.5-4.7-4.6 6.5-.9L12 3z" />
+    </svg>
+  );
+}
+
+function ForkIcon() {
+  return (
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-label="forks">
+      <circle cx="6" cy="4" r="2.2" />
+      <circle cx="18" cy="4" r="2.2" />
+      <circle cx="12" cy="20" r="2.2" />
+      <path d="M6 6.2v3.3a3 3 0 0 0 3 3h6a3 3 0 0 0 3-3V6.2M12 12.5v5.3" />
+    </svg>
   );
 }

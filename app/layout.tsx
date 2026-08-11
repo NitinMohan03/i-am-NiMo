@@ -1,15 +1,18 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Sora } from "next/font/google";
+import { Bricolage_Grotesque, DM_Sans, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "@/components/ThemeProvider";
-import { DotGridBackground } from "@/components/DotGridBackground";
+import { MotionLayer } from "@/components/MotionLayer";
 import { profile } from "@/data/profile";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-sans", display: "swap" });
-const sora = Sora({
+const dmSans = DM_Sans({ subsets: ["latin"], variable: "--font-sans", display: "swap" });
+const bricolage = Bricolage_Grotesque({
   subsets: ["latin"],
   variable: "--font-display",
-  weight: ["600", "700", "800"],
+  display: "swap",
+});
+const jetbrains = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
   display: "swap",
 });
 
@@ -45,7 +48,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#2b3149",
+  themeColor: "#151a22",
   width: "device-width",
   initialScale: 1,
 };
@@ -56,18 +59,31 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${sora.variable}`}>
-      <body className="min-h-screen font-sans antialiased">
-        <ThemeProvider>
-          <DotGridBackground />
-          <a
-            href="#main"
-            className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-ink-800 focus:px-4 focus:py-2"
-          >
-            Skip to content
-          </a>
-          {children}
-        </ThemeProvider>
+    <html
+      lang="en"
+      // The bootstrap below stamps `pre-reveal` on <html> before hydration.
+      suppressHydrationWarning
+      className={`${dmSans.variable} ${bricolage.variable} ${jetbrains.variable}`}
+    >
+      <head>
+        <script
+          // Hides reveal targets before first paint (skipped under reduced
+          // motion) and self-clears after 3s if MotionLayer never mounts.
+          dangerouslySetInnerHTML={{
+            __html:
+              "(function(){try{if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;var d=document.documentElement;d.classList.add('pre-reveal');setTimeout(function(){d.classList.remove('pre-reveal')},3000)}catch(e){}})()",
+          }}
+        />
+      </head>
+      <body className="min-h-screen bg-ground font-sans text-ink antialiased">
+        <MotionLayer />
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[70] focus:bg-coral focus:px-4 focus:py-2 focus:text-sm focus:text-ground"
+        >
+          Skip to content
+        </a>
+        {children}
       </body>
     </html>
   );
