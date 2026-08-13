@@ -96,8 +96,9 @@ export const profile = {
     coordinates: "40.6415° N, 74.0235° W",
   },
 
-  // Headshot rendered in the hero portrait mask.
-  photo: "/avatar.jpg" as string | null,
+  // Background-removed headshot, rendered floating over the hero's ring.
+  // The uncut original stays at /avatar.jpg.
+  photo: "/avatar-cutout.png" as string | null,
   initials: "NM",
 
   githubUsername: "NitinMohan03",

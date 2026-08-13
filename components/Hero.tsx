@@ -102,14 +102,18 @@ export function Hero() {
         <div data-orbit="1" className="absolute inset-[6%] animate-spin-slow rounded-full">
           <span className="absolute left-1/2 top-[-7px] -ml-[6.5px] h-[13px] w-[13px] rounded-full bg-coral" />
         </div>
-        <div className="relative h-[86%] w-[72%] animate-float overflow-hidden rounded-[999px_999px_4px_4px] border border-line-strong bg-ground-panel">
+        {/* Cut-out headshot, floating over the ring rather than masked inside
+            it, so the shoulders break the circle. */}
+        <div className="absolute inset-x-0 bottom-0 h-[92%] animate-float">
           <Image
-            src={profile.photo ?? "/avatar.jpg"}
+            src={profile.photo ?? "/avatar-cutout.png"}
             alt={`${profile.name}, ${profile.title}`}
             fill
             priority
-            sizes="(max-width: 768px) 60vw, 330px"
-            className="object-cover object-top"
+            sizes="(max-width: 768px) 70vw, 420px"
+            // The source photo is cropped at the chest, so dissolve the last
+            // slice instead of ending on a hard horizontal cut.
+            className="object-contain object-bottom [mask-image:linear-gradient(to_bottom,black_86%,transparent_99%)]"
           />
         </div>
       </div>
