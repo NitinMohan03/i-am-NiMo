@@ -201,6 +201,7 @@ export const profile = {
         { label: "AI/ML", value: "RAG, OpenRouter routing" },
         { label: "Auth", value: "Firebase" },
       ],
+      image: "/projects/rag-paper-assistant.png",
       repo: "https://github.com/NitinMohan03/rag-paper-assistant",
       demo: null,
     },

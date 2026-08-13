@@ -23,7 +23,7 @@ export function ProjectCard({
           alt={`${project.name} screenshot`}
           fill
           sizes="(max-width: 900px) 100vw, 45vw"
-          className="object-cover"
+          className="object-cover object-top"
         />
       ) : (
         <span className="px-6 text-center font-mono text-[11px] uppercase tracking-[0.08em] text-ink-dim">
