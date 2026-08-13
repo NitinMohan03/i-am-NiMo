@@ -9,7 +9,10 @@ import { Contact } from "@/components/Contact";
 
 export default function Home() {
   return (
-    <div className="relative overflow-x-clip bg-ground">
+    // No background here: <body> already paints the ground, and an opaque
+    // background on this wrapper would cover MotionLayer's cursor glow,
+    // which sits at z-0 behind the z-[1] sections.
+    <div className="relative overflow-x-clip">
       <TopNav />
       <main id="main">
         <Hero />
