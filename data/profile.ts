@@ -247,6 +247,7 @@ export const profile = {
         { label: "State", value: "Redis hot store" },
         { label: "Source", value: "FastF1 telemetry" },
       ],
+      image: "/projects/f1-tyre-degradation-pipeline.png",
       repo: "https://github.com/NitinMohan03/f1-tyre-degradation-pipeline",
       demo: null,
     },

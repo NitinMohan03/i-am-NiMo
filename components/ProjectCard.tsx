@@ -15,7 +15,9 @@ export function ProjectCard({
   const thumb = (
     <div
       data-tilt="1"
-      className="hatch relative flex aspect-[4/3] items-center justify-center overflow-hidden border border-line-strong transition-[transform,border-color] duration-500 ease-out hover:border-coral/45"
+      className={`relative flex aspect-[4/3] items-center justify-center overflow-hidden border border-line-strong transition-[transform,border-color] duration-500 ease-out hover:border-coral/45 ${
+        project.image ? "bg-ground-panel" : "hatch"
+      }`}
     >
       {project.image ? (
         <Image
