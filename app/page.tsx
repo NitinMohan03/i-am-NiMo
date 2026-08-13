@@ -13,9 +13,11 @@ export default function Home() {
       <TopNav />
       <main id="main">
         <Hero />
+        {/* The chat is the differentiator, so it sits above the static
+            sections that answer the same questions more slowly. */}
+        <AskAI />
         <About />
         <Projects />
-        <AskAI />
         <GitHubActivity />
         <Experience />
         <Contact />

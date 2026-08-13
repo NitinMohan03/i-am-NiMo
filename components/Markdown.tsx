@@ -52,7 +52,7 @@ export function Markdown({ children }: { children: string }) {
             </code>
           ),
           blockquote: ({ children }) => (
-            <blockquote className="border-l-2 border-coral pl-3 text-ink-muted">
+            <blockquote className="border-l border-line-strong pl-3 text-ink-muted">
               {children}
             </blockquote>
           ),

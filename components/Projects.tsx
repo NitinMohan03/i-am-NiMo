@@ -13,7 +13,12 @@ export function Projects() {
       data-spy="work"
       className="relative z-[1] scroll-mt-24 border-t border-line-soft px-[clamp(20px,5vw,72px)] py-[clamp(80px,11vh,140px)]"
     >
-      <SectionHead index="02" label="Selected work" title="Projects" centered size="lg" />
+      <SectionHead
+        title="Projects"
+        caption={`${profile.projects.length} builds · GenAI, full-stack, data`}
+        centered
+        size="lg"
+      />
 
       <div className="flex flex-col gap-[clamp(72px,10vh,130px)]">
         {featured.map((p, i) => (

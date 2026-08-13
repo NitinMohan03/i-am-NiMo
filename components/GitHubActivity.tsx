@@ -57,9 +57,8 @@ export async function GitHubActivity() {
       className="relative z-[1] scroll-mt-24 border-t border-line-soft px-[clamp(20px,5vw,72px)] py-[clamp(80px,11vh,140px)]"
     >
       <SectionHead
-        index="04"
-        label="Activity"
         title="Latest from GitHub."
+        caption="Fetched live from the GitHub API, cached hourly"
         maxWidth="max-w-[20ch]"
       />
 

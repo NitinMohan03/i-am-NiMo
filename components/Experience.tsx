@@ -8,7 +8,10 @@ export function Experience() {
       data-spy="path"
       className="relative z-[1] scroll-mt-24 border-t border-line-soft px-[clamp(20px,5vw,72px)] py-[clamp(80px,11vh,140px)]"
     >
-      <SectionHead index="05" label="Experience" title="Where I've shipped." />
+      <SectionHead
+        title="Where I've shipped."
+        caption={`${profile.experience[profile.experience.length - 1].start} → ${profile.education[0].end}`}
+      />
 
       <div className="flex flex-col border-t border-line">
         {profile.experience.map((job) => (

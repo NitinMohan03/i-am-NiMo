@@ -1,6 +1,10 @@
 import { SectionHead } from "./SectionHead";
 import { profile } from "@/data/profile";
 
+// The intro's first sentence is the heading; the rest is the deck, so the
+// page never prints the same sentence twice.
+const [introLead, ...introRest] = profile.intro.split(/(?<=\.)\s+/);
+
 export function About() {
   return (
     <section
@@ -9,9 +13,8 @@ export function About() {
       className="relative z-[1] scroll-mt-24 border-t border-line-soft px-[clamp(20px,5vw,72px)] py-[clamp(80px,11vh,140px)]"
     >
       <SectionHead
-        index="01"
-        label="About"
-        title="Full-stack engineer turned AI builder."
+        title={introLead}
+        deck={introRest.join(" ")}
         maxWidth="max-w-[22ch]"
       />
 
@@ -19,21 +22,14 @@ export function About() {
         <div className="flex flex-col gap-7">
           <p
             data-reveal="up"
-            className="m-0 text-[clamp(17px,1.4vw,21px)] leading-[1.6] text-ink [text-wrap:pretty]"
-          >
-            {profile.intro}
-          </p>
-          <p
-            data-reveal="up"
-            data-delay="80"
             className="m-0 max-w-[68ch] text-[16.5px] leading-[1.75] text-ink-muted [text-wrap:pretty]"
           >
             {profile.mindset}
           </p>
           <div
             data-reveal="up"
-            data-delay="140"
-            className="flex flex-col gap-3 border-l-2 border-coral bg-ground-panel px-6 py-[22px]"
+            data-delay="80"
+            className="flex flex-col gap-3 border border-line bg-ground-panel px-6 py-[22px]"
           >
             <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-coral">
               Currently
@@ -48,7 +44,7 @@ export function About() {
           {profile.highlights.map((h, i) => (
             <div
               key={h.label}
-              data-reveal="up"
+              data-reveal="drop"
               data-delay={String(60 + i * 60)}
               className="flex flex-col gap-2 bg-ground px-6 py-7"
             >
@@ -64,12 +60,12 @@ export function About() {
       </div>
 
       <div className="mt-[clamp(56px,8vh,96px)] flex flex-col gap-7">
-        <span
+        <h3
           data-reveal="up"
-          className="font-mono text-[11.5px] uppercase tracking-[0.16em] text-ink-dim"
+          className="m-0 font-display text-2xl font-bold tracking-[-0.02em] text-ink [text-wrap:balance]"
         >
           Toolkit
-        </span>
+        </h3>
         <div className="grid auto-rows-fr gap-3 [grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr))]">
           {profile.skills.map((group, i) => (
             <div

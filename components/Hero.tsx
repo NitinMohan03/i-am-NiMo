@@ -20,7 +20,7 @@ export function Hero() {
           </span>
         </div>
 
-        <h1 className="m-0 font-display font-extrabold leading-[0.94] tracking-[-0.035em] text-ink">
+        <h1 className="m-0 font-display font-extrabold leading-[0.94] tracking-[-0.035em] text-ink [text-wrap:balance]">
           <span
             data-reveal="up"
             data-delay="80"

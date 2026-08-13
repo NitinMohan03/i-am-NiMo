@@ -2,9 +2,9 @@ import { profile } from "@/data/profile";
 
 // Anchors match the section ids in app/page.tsx; `spy` matches their data-spy.
 const LINKS = [
+  { label: "Ask AI", href: "#ask", spy: "ask" },
   { label: "About", href: "#about", spy: "about" },
   { label: "Work", href: "#work", spy: "work" },
-  { label: "Ask AI", href: "#ask", spy: "ask" },
   { label: "Experience", href: "#path", spy: "path" },
   { label: "Contact", href: "#contact", spy: "contact" },
 ];

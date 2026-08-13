@@ -10,22 +10,15 @@ export function Contact() {
       className="relative z-[1] scroll-mt-24 border-t border-line-soft px-[clamp(20px,5vw,72px)] pb-[72px] pt-[clamp(90px,13vh,160px)]"
     >
       <div className="flex max-w-[1000px] flex-col gap-[22px]">
-        <span
-          data-reveal="up"
-          className="font-mono text-[11.5px] uppercase tracking-[0.16em] text-coral"
-        >
-          06 — Contact
-        </span>
         <h2
           data-reveal="up"
-          data-delay="60"
-          className="m-0 font-display text-[clamp(34px,5.6vw,78px)] font-extrabold leading-none tracking-[-0.035em] text-ink"
+          className="m-0 font-display text-[clamp(34px,5.6vw,78px)] font-extrabold leading-none tracking-[-0.035em] text-ink [text-wrap:balance]"
         >
           Let&apos;s build something that ships.
         </h2>
 
         <a
-          data-reveal="up"
+          data-reveal="left"
           data-delay="120"
           href={`mailto:${profile.socials.email}`}
           className="group mt-3 inline-flex items-center gap-3.5 self-start border-b-2 border-coral/40 pb-1.5 font-display text-[clamp(19px,2.4vw,32px)] font-semibold tracking-[-0.02em] text-ink transition-[border-color,gap] duration-300 hover:gap-[22px] hover:border-coral"

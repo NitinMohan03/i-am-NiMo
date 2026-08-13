@@ -28,9 +28,13 @@ export function AskAI() {
       className="relative z-[1] scroll-mt-24 border-t border-line-soft px-[clamp(20px,5vw,72px)] py-[clamp(80px,11vh,140px)]"
     >
       <SectionHead
-        index="03"
-        label="Ask my AI"
         title="Talk to the site."
+        caption={
+          <span className="inline-flex items-center gap-2">
+            <span className="h-1.5 w-1.5 animate-blink rounded-full bg-coral" />
+            Live model, grounded in this page&apos;s data
+          </span>
+        }
         maxWidth="max-w-[20ch]"
       />
 
@@ -47,7 +51,7 @@ export function AskAI() {
           <div
             data-reveal="up"
             data-delay="80"
-            className="flex flex-col gap-3 border-l-2 border-coral bg-ground-panel px-6 py-[22px]"
+            className="flex flex-col gap-3 border border-line bg-ground-panel px-6 py-[22px]"
           >
             <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-coral">
               Under the hood
@@ -61,7 +65,7 @@ export function AskAI() {
         </div>
 
         <div
-          data-reveal="up"
+          data-reveal="scale"
           data-delay="60"
           className="flex flex-col border border-line bg-ground-panel p-4 sm:p-5"
         >

@@ -46,7 +46,7 @@ export function ProjectCard({
         <span className="font-mono text-[11.5px] uppercase tracking-[0.12em] text-coral">
           {project.category}
         </span>
-        <h3 className="m-0 font-display text-[clamp(24px,2.6vw,36px)] font-bold tracking-[-0.025em] text-ink">
+        <h3 className="m-0 font-display text-[clamp(24px,2.6vw,36px)] font-bold tracking-[-0.025em] text-ink [text-wrap:balance]">
           {project.name}
         </h3>
       </div>
