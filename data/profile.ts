@@ -103,7 +103,7 @@ export const profile = {
   githubUsername: "NitinMohan03",
 
   socials: {
-    email: "nitinmohanofficial@gmail.com",
+    email: "nm5029@nyu.edu",
     linkedin: "https://www.linkedin.com/in/nitin-mohan1903",
     github: "https://github.com/NitinMohan03",
     phone: "+1 347-967-2954",
