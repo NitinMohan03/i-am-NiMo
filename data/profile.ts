@@ -51,7 +51,7 @@ export const profile = {
   name: "Nitin Mohan",
   title: "Software Engineer",
   tagline:
-    "I build AI-powered web platforms, from RAG pipelines and GenAI services to fast, real-time React frontends.",
+    "I build AI products that survive contact with real users: RAG pipelines, agentic systems, and the fast React frontends that make them usable.",
 
   // Used by the About bento and the chat system prompt.
   mindset:
