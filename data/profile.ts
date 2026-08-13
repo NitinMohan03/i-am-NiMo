@@ -224,6 +224,7 @@ export const profile = {
         { label: "Auth", value: "AWS Cognito (RBAC)" },
         { label: "QA", value: "Playwright E2E" },
       ],
+      image: "/projects/safezone-campus-safety.png",
       repo: "https://github.com/NitinMohan03/safezone-campus-safety",
       demo: null,
     },
