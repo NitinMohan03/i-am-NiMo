@@ -97,8 +97,7 @@ export const profile = {
   },
 
   // Background-removed headshot, rendered floating over the hero's ring.
-  // The uncut original stays at /avatar.jpg.
-  photo: "/avatar-cutout.png" as string | null,
+  photo: "/avatar.png" as string | null,
   initials: "NM",
 
   githubUsername: "NitinMohan03",
