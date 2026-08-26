@@ -106,7 +106,7 @@ export function Hero() {
             it, so the shoulders break the circle. */}
         <div className="absolute inset-x-0 bottom-0 h-[92%] animate-float">
           <Image
-            src={profile.photo ?? "/avatar.png"}
+            src={profile.photo ?? "/avatar-hoodie.png"}
             alt={`${profile.name}, ${profile.title}`}
             fill
             priority
