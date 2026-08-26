@@ -4,10 +4,10 @@ import { profile } from "@/data/profile";
 // rate-limited upstream constantly, so we fall through the list until one
 // answers. Reorder / swap slugs from https://openrouter.ai/models?max_price=0.
 export const CHAT_MODELS = [
-  "openai/gpt-oss-120b:free",
-  "google/gemma-4-31b-it:free",
-  "openai/gpt-oss-20b:free",
-  "meta-llama/llama-3.3-70b-instruct:free",
+  "minimax/minimax-m3:free",
+  "nvidia/nemotron-3-super-120b-a12b:free",
+  "minimax/minimax-m2.7:free",
+  "nvidia/nemotron-3.5-lightning:free",
 ];
 
 // OpenRouter's OpenAI-compatible endpoint.
