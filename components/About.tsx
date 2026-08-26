@@ -40,22 +40,40 @@ export function About() {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-px border border-line bg-line">
-          {profile.highlights.map((h, i) => (
-            <div
-              key={h.label}
-              data-reveal="drop"
-              data-delay={String(60 + i * 60)}
-              className="flex flex-col gap-2 bg-ground px-6 py-7"
-            >
-              <span className="font-display text-[clamp(26px,2.6vw,38px)] font-bold tracking-[-0.03em] text-coral">
-                {h.value}
-              </span>
-              <span className="font-mono text-[11px] uppercase tracking-[0.08em] text-ink-muted">
-                {h.label}
-              </span>
+        <div className="flex flex-col gap-7">
+          <div className="grid grid-cols-2 gap-px border border-line bg-line">
+            {profile.highlights.map((h, i) => (
+              <div
+                key={h.label}
+                data-reveal="drop"
+                data-delay={String(60 + i * 60)}
+                className="flex flex-col gap-2 bg-ground px-6 py-7"
+              >
+                <span className="font-display text-[clamp(26px,2.6vw,38px)] font-bold tracking-[-0.03em] text-coral">
+                  {h.value}
+                </span>
+                <span className="font-mono text-[11px] uppercase tracking-[0.08em] text-ink-muted">
+                  {h.label}
+                </span>
+              </div>
+            ))}
+          </div>
+
+          <div data-reveal="up" data-delay="300" className="flex flex-col gap-3.5">
+            <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-ink-dim">
+              What I build
+            </span>
+            <div className="flex flex-wrap gap-2.5">
+              {profile.builds.map((b) => (
+                <span
+                  key={b}
+                  className="rounded-full border border-line-strong px-3.5 py-[7px] font-mono text-[11.5px] tracking-[0.02em] text-ink-muted"
+                >
+                  {b}
+                </span>
+              ))}
             </div>
-          ))}
+          </div>
         </div>
       </div>
 

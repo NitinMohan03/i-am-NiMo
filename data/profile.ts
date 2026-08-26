@@ -55,11 +55,11 @@ export const profile = {
 
   // Used by the About bento and the chat system prompt.
   mindset:
-    "I like owning the whole problem, tracing it from the data layer to the last pixel, and lately I've been pointing that instinct at AI. Three years shipping production React and Node systems at Accenture taught me to sweat performance, security, and reliability. My work at NYU pushes that into GenAI: RAG pipelines, LLM orchestration, and agentic systems that do things, not just chat. What I want to build are AI products that hold up in front of real users, not just in a demo.",
+    "I like owning the whole problem, from the query plan to the last pixel. Three years at Accenture taught me what that actually costs: chasing an N+1 through Datadog traces at 427 requests a second, writing middleware that killed a whole class of injection bugs instead of patching them one at a time, caching OCR results so a document system stopped redoing work it had already done. At NYU I've been pointing the same instinct at GenAI, building RAG pipelines and agentic systems where retrieval quality, tenant isolation, and the behaviour on a bad response matter as much as the model does. That is the part of AI work I find interesting: everything that has to hold once someone actually depends on it.",
 
   // Short, human one-liner for the About header.
   intro:
-    "Full-stack engineer turned AI builder. I ship reliable software and the agentic systems on top of it.",
+    "Full-stack engineer turned AI builder. Three years of production systems at Accenture, now an M.S. at NYU pointed at GenAI.",
 
   // Target roles — shown as chips, signals what I'm aiming for.
   roles: [
@@ -76,8 +76,8 @@ export const profile = {
   highlights: [
     { value: "3 yrs", label: "Production SWE" },
     { value: "500+", label: "SAST Vulns Eliminated" },
-    { value: "74%", label: "Faster Response Times" },
-    { value: "50M+", label: "Record Dataset Tuned" },
+    { value: "150+ → <15", label: "DB Calls Per Request" },
+    { value: "4.2s → 2.8s", label: "Page Load, 140+ Components" },
   ] as { value: string; label: string }[],
 
   // Longer narrative — feeds the About section and seeds the chat assistant.
