@@ -90,6 +90,10 @@ export async function POST(req: Request) {
           max_tokens: MAX_OUTPUT_TOKENS,
           stream: true,
           messages: apiMessages,
+          // Several current slugs are reasoning models: left on, they spend the
+          // whole token budget on hidden reasoning and stream back empty
+          // content. Non-reasoning models ignore this field.
+          reasoning: { enabled: false },
         }),
       });
       if (res.ok && res.body) {

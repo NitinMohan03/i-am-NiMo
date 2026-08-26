@@ -8,6 +8,9 @@ export const CHAT_MODELS = [
   "nvidia/nemotron-3-super-120b-a12b:free",
   "minimax/minimax-m2.7:free",
   "nvidia/nemotron-3.5-lightning:free",
+  // Paid, last resort: pennies per thousand answers, but only reached when
+  // every free slug above is rate-limited or withdrawn.
+  "qwen/qwen3.7-flash",
 ];
 
 // OpenRouter's OpenAI-compatible endpoint.
