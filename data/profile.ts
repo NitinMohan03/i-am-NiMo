@@ -75,18 +75,18 @@ export const profile = {
   // Quick credibility stats for the About bento. Keep to 4.
   highlights: [
     { value: "3 yrs", label: "Production SWE" },
-    { value: "350+", label: "Total Vulns Resolved" },
-    { value: "86+", label: "Total Components Shipped" },
-    { value: "3.89", label: "GPA @ NYU" },
+    { value: "500+", label: "SAST Vulns Eliminated" },
+    { value: "74%", label: "Faster Response Times" },
+    { value: "50M+", label: "Record Dataset Tuned" },
   ] as { value: string; label: string }[],
 
   // Longer narrative — feeds the About section and seeds the chat assistant.
   bio: [
-    "Nitin Mohan is a software engineer with three years of full-stack experience at Accenture and a current M.S. in Computer Science at New York University (GPA 3.89).",
-    "At Accenture he worked on large-scale healthcare applications built with React and Node.js: he built PDF ingestion pipelines that extracted medical data (ICD diagnosis codes, patient demographics, provider details) and rendered them as interactive, auditable digital forms; led a frontend modernization migrating legacy class-based React to React 17 with Hooks and Redux, cutting unnecessary re-renders by ~40%; and personally remediated 84+ critical security vulnerabilities (XSS, SQL injection, insecure headers) surfaced by enterprise DAST/SAST scans.",
-    "He was promoted to Software Engineer within 18 months, won the ACE Bright Beginners Award in his third month, and was named Star Performer for Q2 2024. He served as technical lead and single point of contact for a D3.js/React reporting dashboard, and onboarded and mentored 6 new engineers.",
-    "Earlier he interned at Ernst & Young as a Full Stack Developer, building a Python + TimescaleDB time-series ingestion pipeline (42% faster queries) and a deterministic simulation engine for hardware anomalies.",
-    "Now at NYU he focuses on GenAI, agentic systems, and cloud: he's built a serverless RAG research-paper assistant (FastAPI on Cloud Run, Pinecone vector search, dynamic LLM routing via OpenRouter), a real-time campus-safety mapping platform (React/TypeScript, Mapbox, AWS Cognito, WebSockets), and several AWS-native AI applications that wire LLMs to real tools and data. He's targeting Forward-Deployed Engineer, AI/agentic, and full-stack SWE roles, work where he can sit close to users and ship AI products that hold up in production. This portfolio's chat box is itself one of his GenAI demos.",
+    "Nitin Mohan is a full-stack software engineer with production-scale experience in distributed systems, GenAI, and cloud infrastructure. He spent three years at Accenture and is now completing an M.S. in Computer Science at New York University (GPA 3.89, expected May 2027).",
+    "At Accenture, on full-stack and LLM work for enterprise healthcare clients, he eliminated 500+ critical SAST vulnerabilities across 8 applications by engineering middleware that resolved whole classes of XSS, SQL injection, and CSRF issues, then codified the fixes into Semgrep and SonarQube rules adopted as project-wide security standards. He diagnosed a GraphQL N+1 bottleneck throttling a 50M+ record dataset at 427 RPS peak using Datadog APM tracing, and replaced per-field resolver queries with DataLoader batching, cutting per-request database calls from 150+ to under 15 and p95 latency by 37%.",
+    "He also designed a Redis caching layer for a distributed healthcare document system serving 6k+ daily requests across NA and EU clients, hitting a 73% cache hit ratio and cutting average response time by 74% by eliminating redundant OCR reprocessing, and led a frontend modernization migrating 140+ legacy class-based React components to React 17 with Hooks and centralized Redux, taking page load from 4.2s to 2.8s. His generative AI assistant PoC on Google Cloud Run, wiring Vertex AI APIs to a React frontend that streams LLM responses grounded in PDF-extracted content, contributed to Accenture's 2024 Google Cloud ML Partner of the Year award. He was promoted within 18 months, won the ACE Bright Beginners Award in his third month, was named Star Performer for Q2 2024, mentored 6 engineers to ticket-independent productivity within their first sprint, and ran React and D3.js knowledge-sharing sessions for 80-100 people across engineering, QA, and business teams.",
+    "Earlier, as a backend infrastructure intern at Ernst & Young, he architected a distributed Apache Kafka streaming pipeline on AWS ingesting 1,842 daily industrial IoT sensor signals across 3 topics with MQTT broker integration, cut KPI dashboard query latency 85% (250ms to 38ms) with a Redis layer in front of Apache Spark aggregations, and eliminated silent data loss by routing 70 malformed signals a day to a dead-letter queue with real-time alerting on consumer lag.",
+    "At NYU he focuses on GenAI, agentic systems, and cloud. He built a RAG research-paper assistant (FastAPI on Google Cloud Run, Pinecone vector search, multi-LLM routing via OpenRouter, Firestore) with multi-tenant isolation enforced at both the Pinecone namespace and Firestore rules layers, and SafeZone, a campus-safety platform (React 19, Vite, Mapbox GL JS, AWS Cognito) with a geospatial rerouting algorithm that computes flanking waypoints around incident clusters. He's targeting Forward-Deployed Engineer, AI/agentic, and full-stack SWE roles, work where he can sit close to users and ship AI products that hold up in production. This portfolio's chat box is itself one of his GenAI demos.",
   ].join("\n\n"),
 
   status: "Open to Forward-Deployed, AI/Agentic & Full-Stack roles (New Grad 2027)",
@@ -112,29 +112,30 @@ export const profile = {
   experience: [
     {
       company: "Accenture",
-      role: "Software Engineer",
+      role: "Software Engineer, Full-Stack LLM Development",
       location: "Bengaluru, India",
       start: "Aug 2022",
       end: "Jul 2025",
       bullets: [
-        "Architected scalable REST API integrations on cloud-native microservices (Node.js, FastAPI) with async processing, reducing data-processing latency by 30%.",
-        "Refactored legacy architectures and added monitoring, improving system response times by 35% and accelerating production-issue resolution.",
-        "Owned the end-to-end deployment lifecycle, integrating automated quality gates into CI/CD to cut the production bug backlog by 20%.",
-        "Built customer-facing React frontends, standardizing 45+ components across 8 enterprise apps and migrating legacy class components to Hooks + Redux (~40% fewer re-renders).",
-        "Hardened systems with input sanitization and parameterized queries, remediating 84+ critical security vulnerabilities across 5 high-traffic applications.",
-        "Promoted within 18 months; ACE Bright Beginners Award (month 3) and Star Performer Q2 2024; mentored 6 new engineers.",
+        "Eliminated 500+ critical SAST vulnerabilities across 8 applications by engineering middleware that resolved entire classes of XSS, SQLi, and CSRF issues, codifying the fixes into Semgrep and SonarQube rules adopted as project-wide security standards.",
+        "Diagnosed a large-scale GraphQL N+1 bottleneck throttling a 50M+ record dataset at 427 RPS peak load using Datadog APM tracing, replacing per-field resolver queries with DataLoader batching, cutting per-request database calls from 150+ to under 15 and p95 latency by 37%.",
+        "Engineered a generative AI assistant for a client PoC on Google Cloud Run, integrating Vertex AI APIs with a React frontend to stream LLM responses grounded in PDF-extracted content, contributing to Accenture's 2024 Google Cloud ML Partner of the Year award.",
+        "Designed a Redis caching layer for a distributed healthcare document system serving 6k+ daily requests across NA/EU clients, achieving a 73% cache hit ratio and cutting average response time by 74% by eliminating redundant OCR reprocessing.",
+        "Led a frontend modernization migrating 140+ legacy class-based React components to React 17 with Hooks and centralized Redux state, eliminating unnecessary re-renders and reducing page load time from 4.2s to 2.8s.",
+        "Mentored 6 engineers to ticket-independent productivity within their first sprint and led React and D3.js knowledge-sharing sessions for 80-100 employees across engineering, QA, and business teams.",
+        "Promoted within 18 months; ACE Bright Beginners Award (month 3) and Star Performer Q2 2024.",
       ],
     },
     {
       company: "Ernst & Young",
-      role: "Full Stack Developer Intern",
+      role: "Software Engineer Intern, Backend Infrastructure",
       location: "Gurugram, India",
       start: "May 2021",
       end: "Aug 2021",
       bullets: [
-        "Engineered a Python + TimescaleDB time-series ingestion pipeline on Linux, optimizing query execution by 42%.",
-        "Built a deterministic Python simulation engine to recreate hardware anomalies, cutting root-cause analysis time by 35%.",
-        "Architected RESTful web services feeding a React frontend with real-time diagnostics.",
+        "Architected a distributed Apache Kafka streaming pipeline on AWS ingesting 1,842 daily industrial IoT sensor signals across 3 topics, enabling high-throughput delivery to multiple downstream consumer groups via MQTT broker integration.",
+        "Cut KPI dashboard query latency by 85%, from 250ms to 38ms, by engineering a Redis caching layer in front of Apache Spark aggregations using Python and SQL, reducing overhead on high-frequency operational metrics.",
+        "Eliminated silent data loss in the ingestion pipeline by implementing real-time alerting on consumer lag and ingestion failures, routing 70 malformed signals daily (3.8% of total throughput) to a dead-letter queue instead of dropping them.",
       ],
     },
   ] as ExperienceItem[],
@@ -143,7 +144,7 @@ export const profile = {
     {
       school: "New York University",
       degree: "M.S. in Computer Science",
-      detail: "GPA 3.89 / 4.0 · Cloud Computing & Big Data, Computer Security, Software Engineering",
+      detail: "GPA 3.89 / 4.0 · Algorithms, Cloud Computing & Big Data, Machine Learning, Internet Security, Software Engineering, Data Engineering",
       location: "Brooklyn, New York",
       start: "Aug 2025",
       end: "May 2027",
@@ -151,7 +152,7 @@ export const profile = {
     {
       school: "Amity University",
       degree: "B.Tech, Computer Science & Engineering",
-      detail: "",
+      detail: "Data Structures, Databases, Web Development, Operating Systems · 3 independent research studies",
       location: "Uttar Pradesh, India",
       start: "Jul 2018",
       end: "May 2022",
@@ -160,24 +161,28 @@ export const profile = {
 
   skills: [
     {
-      label: "Languages & Core CS",
-      items: ["Java", "Python", "C++", "TypeScript", "JavaScript (ES6+)", "SQL", "OOD"],
+      label: "Languages",
+      items: ["Python", "JavaScript", "TypeScript", "Go", "Java", "C#", "C++", "C", "SQL", "Bash", "HTML", "CSS"],
     },
     {
-      label: "Cloud & Backend",
-      items: ["AWS (S3, EC2, Lambda, Cognito)", "GCP (Cloud Run)", "Docker", "Node.js", "Express.js", "FastAPI", "REST", "GraphQL", "Serverless"],
+      label: "Frameworks & APIs",
+      items: ["React", "React Native", "FastAPI", "Java Spring Boot", "Node.js", "Angular", "REST APIs", "WebSocket", "OAuth 2.0", "JWT", "RBAC"],
     },
     {
-      label: "Frontend",
-      items: ["React (Hooks, Context, Redux)", "Next.js", "Tailwind CSS", "D3.js", "Mapbox GL JS"],
+      label: "Databases & Caching",
+      items: ["PostgreSQL", "Redis", "DynamoDB", "TimescaleDB", "CosmosDB", "MySQL", "OpenSearch", "SQLite"],
     },
     {
-      label: "AI / ML",
-      items: ["RAG", "Pinecone (Vector DB)", "LLM Prompt Orchestration", "OpenRouter", "Anthropic API", "OpenAI Embeddings"],
+      label: "Cloud & Infrastructure",
+      items: ["AWS (Lambda, SQS, SNS, SES, API Gateway, Cognito, S3, EC2)", "Azure (AKS, Event Hubs, SignalR)", "GCP", "Docker", "Kubernetes", "Kafka", "Terraform", "Helm", "Linux/Unix"],
     },
     {
-      label: "Databases & Tools",
-      items: ["PostgreSQL", "MongoDB", "TimescaleDB", "Git/GitHub", "CI/CD", "Agile/Scrum", "Playwright", "Jest", "Linux"],
+      label: "DevSecOps & Platform",
+      items: ["GitHub Actions", "CI/CD", "Prometheus", "Semgrep", "SonarQube", "Unit Testing", "Integration Testing", "Automation Testing"],
+    },
+    {
+      label: "AI & Machine Learning",
+      items: ["LLM integration", "RAG pipelines", "Natural language processing", "Information retrieval", "LangChain", "LangSmith", "SageMaker", "Agentic AI", "Z-Score / EWMA anomaly detection", "GitHub Copilot", "Gemini"],
     },
   ] as SkillGroup[],
 
@@ -187,8 +192,8 @@ export const profile = {
       number: "01",
       category: "AI / RAG",
       description:
-        "Serverless research assistant for academic PDFs: chat, structured summaries, and auto-generated quizzes, all grounded in the source document through a RAG pipeline. Pinecone holds the embeddings and OpenRouter routes each question to a free LLM, so the app scales to zero between sessions.",
-      tech: ["FastAPI", "RAG", "Pinecone", "Cloud Run", "OpenRouter", "Firebase"],
+        "End-to-end RAG pipeline for academic PDFs on Google Cloud Run: chunking, embedding, vector retrieval, and grounded generation, with a fallback to raw-text context when retrieval comes back empty. A routing engine picks between document-grounded and conversational modes per question across multiple LLMs, and multi-tenant isolation is enforced twice over, by Pinecone namespace-per-user and Firestore security rules, so no request can read another user's documents.",
+      tech: ["Python", "FastAPI", "Google Cloud Run", "Pinecone", "OpenRouter", "Firestore", "pdfminer.six"],
       metrics: [
         { value: "<2s", label: "First Token" },
         { value: "Top-K", label: "Retrieval" },
@@ -210,19 +215,19 @@ export const profile = {
       number: "02",
       category: "Full-Stack / Real-Time",
       description:
-        "Campus safety platform with a live incident feed, Mapbox heatmaps, safety-aware route planning, and a role-based admin moderation dashboard. A WebSocket sync layer keeps every client current, and AWS Cognito groups gate the User and Admin views.",
-      tech: ["React", "TypeScript", "Mapbox GL JS", "AWS Cognito", "WebSockets", "Playwright"],
+        "Campus safety platform with a live incident feed, Mapbox heatmaps, and role-based admin moderation. The routing algorithm computes flanking waypoints around incident clusters using bearing offsets and point-to-line distance checks in Turf.js, reconverging on a collision-free path inside a bounded three-iteration loop before falling back to the direct route. Infrastructure is CloudFormation with least-privilege IAM, and auth runs dual-mode: real Cognito flows in production, a local path for demos.",
+      tech: ["React 19", "Vite", "Tailwind CSS", "Mapbox GL JS", "AWS Cognito", "Cloudinary", "Playwright"],
       metrics: [
-        { value: "<200ms", label: "Live Sync" },
-        { value: "Real-Time", label: "Incident Feed" },
-        { value: "RBAC", label: "Moderation" },
-        { value: "E2E", label: "Tested" },
+        { value: "Turf.js", label: "Geospatial Reroute" },
+        { value: "3-iter", label: "Bounded Search" },
+        { value: "IaC", label: "CloudFormation" },
+        { value: "RBAC", label: "Cognito Groups" },
       ],
       specs: [
-        { label: "Arch", value: "React SPA + WebSocket layer" },
-        { label: "Maps", value: "Mapbox GL JS heatmaps" },
-        { label: "Auth", value: "AWS Cognito (RBAC)" },
-        { label: "QA", value: "Playwright E2E" },
+        { label: "Arch", value: "React 19 + Vite SPA" },
+        { label: "Maps", value: "Mapbox GL JS + Turf.js" },
+        { label: "Auth", value: "AWS Cognito (dual-mode)" },
+        { label: "QA", value: "Playwright route mocks" },
       ],
       image: "/projects/safezone-campus-safety.png",
       repo: "https://github.com/NitinMohan03/safezone-campus-safety",
