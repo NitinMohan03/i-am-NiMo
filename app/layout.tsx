@@ -20,7 +20,14 @@ const description =
   "Nitin Mohan — Software Engineer specializing in GenAI/RAG, cloud, and fast React frontends. Ask the AI chat box anything about my experience and projects.";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://nitinmohan.dev"),
+  // The deployed origin. Vercel sets VERCEL_URL per deployment, so previews get
+// their own absolute URLs and production falls back to the live domain.
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL ||
+      (process.env.VERCEL_URL
+        ? `https://${process.env.VERCEL_URL}`
+        : "https://i-am-nimo.vercel.app")
+  ),
   title: `${profile.name} — ${profile.title}`,
   description,
   keywords: [
@@ -38,11 +45,20 @@ export const metadata: Metadata = {
     description,
     type: "website",
     siteName: `${profile.name} · Portfolio`,
+    images: [
+      {
+        url: "/og.png",
+        width: 1200,
+        height: 630,
+        alt: `${profile.name} — ${profile.title}`,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: `${profile.name} — ${profile.title}`,
     description,
+    images: ["/og.png"],
   },
   icons: { icon: "/favicon.svg" },
 };

@@ -62,13 +62,15 @@ export function Hero() {
           className="mt-1.5 flex flex-wrap items-center gap-3.5"
         >
           <a
-            href="#contact"
+            href={profile.resumeUrl}
+            target="_blank"
+            rel="noopener noreferrer"
             data-magnet="1"
             className="inline-flex items-center gap-2.5 rounded-sm bg-coral px-[26px] py-[15px] text-[15px] font-medium text-ground transition-[transform,box-shadow,background-color] duration-300 ease-out hover:bg-coral-light hover:shadow-[0_14px_34px_-12px_rgba(249,118,93,0.7)]"
           >
-            Got a project?
+            Download résumé
             <span className="font-mono text-[13px]" aria-hidden>
-              &rarr;
+              &darr;
             </span>
           </a>
           <a
@@ -99,9 +101,20 @@ export function Hero() {
       >
         <div className="absolute inset-0 rounded-full border border-coral/20" />
         <div className="absolute inset-[6%] rounded-full border-[14px] border-coral/50" />
-        <div data-orbit="1" className="absolute inset-[6%] animate-spin-slow rounded-full">
+        <div className="absolute inset-[6%] rotate-[38deg] rounded-full">
           <span className="absolute left-1/2 top-[-7px] -ml-[6.5px] h-[13px] w-[13px] rounded-full bg-coral" />
         </div>
+
+        {/* A dark suit against a near-black ground loses its edges, so lift the
+            subject off the background with a soft pool of light behind it. */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-[10%] rounded-full"
+          style={{
+            background:
+              "radial-gradient(circle at 50% 45%, rgba(233,237,243,0.10) 0%, rgba(233,237,243,0.04) 45%, rgba(233,237,243,0) 72%)",
+          }}
+        />
         {/* Cut-out headshot, floating over the ring rather than masked inside
             it, so the shoulders break the circle. */}
         <div className="absolute inset-x-0 bottom-0 h-[92%]">

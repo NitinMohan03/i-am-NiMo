@@ -31,6 +31,14 @@ export function Contact() {
 
         <div data-reveal="up" data-delay="180" className="mt-6 flex flex-wrap gap-3.5">
           <a
+            href={profile.resumeUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="rounded-sm border border-coral bg-coral/[0.12] px-[22px] py-3 text-[14.5px] text-coral transition-colors duration-300 hover:bg-coral hover:text-ground"
+          >
+            Résumé (PDF)
+          </a>
+          <a
             href={profile.socials.linkedin}
             target="_blank"
             rel="noopener noreferrer"

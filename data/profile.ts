@@ -104,6 +104,11 @@ export const profile = {
 
   githubUsername: "NitinMohan03",
 
+  // General résumé. Tailored versions go out with applications; this one just
+  // means a recruiter never leaves empty-handed. Replace the file in /public
+  // when the master changes so the two cannot drift apart.
+  resumeUrl: "/nitin-mohan-resume.pdf",
+
   socials: {
     email: "nm5029@nyu.edu",
     linkedin: "https://www.linkedin.com/in/nitin-mohan1903",

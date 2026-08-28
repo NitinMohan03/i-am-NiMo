@@ -31,7 +31,7 @@ export function TopNav() {
           className="flex items-baseline gap-2.5 font-display text-[19px] font-bold tracking-[-0.02em] text-ink"
         >
           {profile.name}
-          <span className="h-1.5 w-1.5 animate-blink rounded-full bg-coral" />
+          <span className="h-1.5 w-1.5 rounded-full bg-coral" />
         </a>
 
         {/* Below sm the links scroll sideways in one row instead of wrapping
