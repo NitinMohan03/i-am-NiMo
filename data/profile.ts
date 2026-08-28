@@ -89,7 +89,7 @@ export const profile = {
     "At NYU he focuses on GenAI, agentic systems, and cloud. He built a RAG research-paper assistant (FastAPI on Google Cloud Run, Pinecone vector search, multi-LLM routing via OpenRouter, Firestore) with multi-tenant isolation enforced at both the Pinecone namespace and Firestore rules layers, and SafeZone, a campus-safety platform (React 19, Vite, Mapbox GL JS, AWS Cognito) with a geospatial rerouting algorithm that computes flanking waypoints around incident clusters. He's targeting Forward-Deployed Engineer, AI/agentic, and full-stack SWE roles, work where he can sit close to users and ship AI products that hold up in production. This portfolio's chat box is itself one of his GenAI demos.",
   ].join("\n\n"),
 
-  status: "Open to Forward-Deployed, AI/Agentic & Full-Stack roles (New Grad 2027)",
+  status: "Open to full-time software roles · New Grad 2027",
 
   location: {
     city: "Brooklyn, New York",
@@ -97,7 +97,7 @@ export const profile = {
   },
 
   // Background-removed headshot, rendered floating over the hero's ring.
-  photo: "/avatar-hoodie.png" as string | null,
+  photo: "/avatar-suit.png" as string | null,
   initials: "NM",
 
   githubUsername: "NitinMohan03",

@@ -4,7 +4,7 @@ import { profile } from "@/data/profile";
 const LINKS = [
   { label: "Ask AI", href: "#ask", spy: "ask" },
   { label: "About", href: "#about", spy: "about" },
-  { label: "Work", href: "#work", spy: "work" },
+  { label: "Projects", href: "#work", spy: "work" },
   { label: "Experience", href: "#path", spy: "path" },
   { label: "Contact", href: "#contact", spy: "contact" },
 ];
