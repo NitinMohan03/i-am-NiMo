@@ -87,7 +87,7 @@ export const profile = {
     "Nitin Mohan is a full-stack software engineer with production-scale experience in distributed systems, GenAI, and cloud infrastructure. He spent three years at Accenture and is now completing an M.S. in Computer Science at New York University (GPA 3.89, expected May 2027).",
     "At Accenture, on full-stack and LLM work for enterprise healthcare clients, he eliminated 500+ critical SAST vulnerabilities across 8 applications by engineering middleware that resolved whole classes of XSS, SQL injection, and CSRF issues, then codified the fixes into Semgrep and SonarQube rules adopted as project-wide security standards. He diagnosed a GraphQL N+1 bottleneck throttling a 50M+ record dataset at 427 RPS peak using Datadog APM tracing, and replaced per-field resolver queries with DataLoader batching, cutting per-request database calls from 150+ to under 15 and p95 latency by 37%.",
     "He also designed a Redis caching layer for a distributed healthcare document system serving 6k+ daily requests across NA and EU clients, hitting a 73% cache hit ratio and cutting average response time by 74% by eliminating redundant OCR reprocessing, and led a frontend modernization migrating 140+ legacy class-based React components to React 17 with Hooks and centralized Redux, taking page load from 4.2s to 2.8s. His generative AI assistant PoC on Google Cloud Run, wiring Vertex AI APIs to a React frontend that streams LLM responses grounded in PDF-extracted content, contributed to Accenture's 2024 Google Cloud ML Partner of the Year award. He was promoted within 18 months, won the ACE Bright Beginners Award in his third month, was named Star Performer for Q2 2024, mentored 6 engineers to ticket-independent productivity within their first sprint, and ran React and D3.js knowledge-sharing sessions for 80-100 people across engineering, QA, and business teams.",
-    "Earlier, as a backend infrastructure intern at Ernst & Young, he architected a distributed Apache Kafka streaming pipeline on AWS ingesting 1,842 daily industrial IoT sensor signals across 3 topics with MQTT broker integration, cut KPI dashboard query latency 85% (250ms to 38ms) with a Redis layer in front of Apache Spark aggregations, and eliminated silent data loss by routing 70 malformed signals a day to a dead-letter queue with real-time alerting on consumer lag.",
+    "Earlier, as a remote backend infrastructure intern at Ernst & Young, he architected a distributed Apache Kafka streaming pipeline on AWS ingesting 1,842 daily industrial IoT sensor signals across 3 topics with MQTT broker integration, cut KPI dashboard query latency 85% (250ms to 38ms) with a Redis layer in front of Apache Spark aggregations, and eliminated silent data loss by routing 70 malformed signals a day to a dead-letter queue with real-time alerting on consumer lag.",
     "At NYU he focuses on GenAI, agentic systems, and cloud. He built a RAG research-paper assistant (FastAPI on Google Cloud Run, Pinecone vector search, multi-LLM routing via OpenRouter, Firestore) with multi-tenant isolation enforced at both the Pinecone namespace and Firestore rules layers, and SafeZone, a campus-safety platform (React 19, Vite, Mapbox GL JS, AWS Cognito) with a geospatial rerouting algorithm that computes flanking waypoints around incident clusters. He's open to full-time software engineering roles, and is most drawn to work where he sits close to users and ships systems that hold up in production. This portfolio's chat box is itself one of his GenAI demos.",
   ].join("\n\n"),
 
@@ -136,7 +136,7 @@ export const profile = {
     {
       company: "Ernst & Young",
       role: "Software Engineer Intern, Backend Infrastructure",
-      location: "Gurugram, India",
+      location: "Remote",
       start: "May 2021",
       end: "Aug 2021",
       bullets: [
@@ -223,7 +223,7 @@ export const profile = {
       category: "Full-Stack / Real-Time",
       description:
         "Campus safety platform with a live incident feed, Mapbox heatmaps, and role-based admin moderation. The routing algorithm computes flanking waypoints around incident clusters using bearing offsets and point-to-line distance checks in Turf.js, reconverging on a collision-free path inside a bounded three-iteration loop before falling back to the direct route. Infrastructure is CloudFormation with least-privilege IAM, and auth runs dual-mode: real Cognito flows in production, a local path for demos.",
-      tech: ["React 19", "Vite", "Tailwind CSS", "Mapbox GL JS", "AWS Cognito", "Cloudinary", "Playwright"],
+      tech: ["React 19", "Vite", "Tailwind CSS", "Mapbox GL JS", "AWS Cognito", "Cloudinary", "Make.com", "Playwright"],
       metrics: [
         { value: "Turf.js", label: "Geospatial Reroute" },
         { value: "3-iter", label: "Bounded Search" },
