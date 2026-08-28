@@ -20,13 +20,12 @@ const description =
   "Nitin Mohan — Software Engineer specializing in GenAI/RAG, cloud, and fast React frontends. Ask the AI chat box anything about my experience and projects.";
 
 export const metadata: Metadata = {
-  // The deployed origin. Vercel sets VERCEL_URL per deployment, so previews get
-// their own absolute URLs and production falls back to the live domain.
+  // Must be the canonical public origin. VERCEL_URL is the per-deployment
+  // hostname (i-am-nimo-<hash>-<scope>.vercel.app), which 302s for scrapers,
+  // so og:image resolved to a URL LinkedIn and Slack cannot fetch. Pin the
+  // production alias; set NEXT_PUBLIC_SITE_URL to override for a real domain.
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL ||
-      (process.env.VERCEL_URL
-        ? `https://${process.env.VERCEL_URL}`
-        : "https://i-am-nimo.vercel.app")
+    process.env.NEXT_PUBLIC_SITE_URL || "https://i-am-nimo.vercel.app"
   ),
   title: `${profile.name} — ${profile.title}`,
   description,
