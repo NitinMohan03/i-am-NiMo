@@ -104,7 +104,7 @@ export function Hero() {
         </div>
         {/* Cut-out headshot, floating over the ring rather than masked inside
             it, so the shoulders break the circle. */}
-        <div className="absolute inset-x-0 bottom-0 h-[92%] animate-float">
+        <div className="absolute inset-x-0 bottom-0 h-[92%]">
           <Image
             src={profile.photo ?? "/avatar-suit.png"}
             alt={`${profile.name}, ${profile.title}`}
