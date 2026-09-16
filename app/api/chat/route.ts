@@ -5,6 +5,7 @@ import {
   MAX_INPUT_CHARS,
   MAX_ASSISTANT_CHARS,
   UPSTREAM_TIMEOUT_MS,
+  FIRST_TOKEN_TIMEOUT_MS,
   GUARD_PROMPT,
   buildSystemPrompt,
   isOriginAllowed,
@@ -64,6 +65,136 @@ function clientIp(req: Request): string {
 }
 
 type IncomingMessage = { role: "user" | "assistant"; content: string };
+
+type ApiMessage = { role: string; content: string };
+
+type OpenStream = {
+  reader: ReadableStreamDefaultReader<Uint8Array>;
+  decoder: TextDecoder;
+  /** The first real text the model produced, already consumed from the stream. */
+  firstText: string;
+  /** Any partial SSE line left after the first text was found. */
+  leftover: string;
+};
+
+/**
+ * Parse one SSE line. Returns the content delta if present, and whether the
+ * frame carried an upstream error (OpenRouter puts 429/502 inside a 200 body).
+ */
+function parseFrame(line: string): {
+  text: string;
+  error: string | null;
+  /** true when the model stopped because it hit max_tokens, not because it finished. */
+  truncated: boolean;
+} {
+  const none = { text: "", error: null, truncated: false };
+  const t = line.trim();
+  if (!t.startsWith("data:")) return none;
+  const data = t.slice(5).trim();
+  if (data === "[DONE]") return none;
+  try {
+    const json = JSON.parse(data);
+    if (json?.error) {
+      return { ...none, error: JSON.stringify(json.error).slice(0, 200) };
+    }
+    const choice = json?.choices?.[0];
+    return {
+      text: choice?.delta?.content ?? "",
+      error: null,
+      truncated: choice?.finish_reason === "length",
+    };
+  } catch {
+    // Keep-alive comments and partial frames.
+    return none;
+  }
+}
+
+// Appended when a reply is cut off by the token ceiling, so the visitor sees
+// a deliberate ending rather than a sentence that stops mid-word.
+const TRUNCATION_TRAILER =
+  "\n\n_(Trimmed for length. Ask about any part and I'll go deeper.)_";
+
+/**
+ * Open a streaming completion and read until the first content delta. Resolves
+ * null if the model answered with an error status, an error frame, an empty
+ * stream, or nothing within FIRST_TOKEN_TIMEOUT_MS — the caller then tries the
+ * next model instead of streaming silence to the visitor.
+ */
+async function openStream(
+  model: string,
+  apiKey: string,
+  messages: ApiMessage[],
+  signal: AbortSignal
+): Promise<OpenStream | null> {
+  let res: Response;
+  try {
+    res = await fetch(OPENROUTER_URL, {
+      method: "POST",
+      signal,
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        "Content-Type": "application/json",
+        // Optional attribution shown on the OpenRouter dashboard.
+        "HTTP-Referer": "https://nitinmohan.dev",
+        "X-Title": "Nitin Mohan - Portfolio",
+      },
+      body: JSON.stringify({
+        model,
+        max_tokens: MAX_OUTPUT_TOKENS,
+        stream: true,
+        messages,
+        // Several current slugs are reasoning models: left on, they spend the
+        // whole token budget on hidden reasoning and stream back empty
+        // content. Non-reasoning models ignore this field.
+        reasoning: { enabled: false },
+      }),
+    });
+  } catch (err) {
+    console.error("OpenRouter fetch error:", model, err);
+    return null;
+  }
+
+  if (!res.ok || !res.body) {
+    const detail = await res.text().catch(() => "");
+    console.error("OpenRouter model failed:", model, res.status, detail.slice(0, 200));
+    return null;
+  }
+
+  const reader = res.body.getReader();
+  const decoder = new TextDecoder();
+  const deadline = Date.now() + FIRST_TOKEN_TIMEOUT_MS;
+  let buffer = "";
+
+  const giveUp = (why: string) => {
+    console.error("OpenRouter model produced no text:", model, why);
+    reader.cancel().catch(() => {});
+    return null;
+  };
+
+  // eslint-disable-next-line no-constant-condition
+  while (true) {
+    if (Date.now() > deadline) return giveUp("first token timeout");
+    let chunk: ReadableStreamReadResult<Uint8Array>;
+    try {
+      chunk = await reader.read();
+    } catch (err) {
+      return giveUp(String(err));
+    }
+    if (chunk.done) return giveUp("stream ended before any content");
+
+    buffer += decoder.decode(chunk.value, { stream: true });
+    const lines = buffer.split("\n");
+    buffer = lines.pop() ?? "";
+
+    let firstText = "";
+    for (const line of lines) {
+      const { text, error } = parseFrame(line);
+      if (error) return giveUp(error);
+      firstText += text;
+    }
+    if (firstText) return { reader, decoder, firstText, leftover: buffer };
+  }
+}
 
 export async function POST(req: Request) {
   const apiKey = process.env.OPENROUTER_API_KEY;
@@ -139,44 +270,18 @@ export async function POST(req: Request) {
     req.signal.removeEventListener("abort", onClientAbort);
   };
 
-  // Free models flap with upstream 429s — try each until one streams OK.
-  let upstream: Response | null = null;
+  // Try each model until one produces an actual first token. A 200 is not
+  // enough: free models routinely answer 200 and then put a 429/502 error
+  // frame, or nothing at all, inside the SSE body. Forwarding that gives the
+  // visitor a blank bubble, so a model only wins once real text arrives.
+  let upstream: OpenStream | null = null;
   for (const model of CHAT_MODELS) {
     if (ac.signal.aborted) break;
-    try {
-      const res = await fetch(OPENROUTER_URL, {
-        method: "POST",
-        signal: ac.signal,
-        headers: {
-          Authorization: `Bearer ${apiKey}`,
-          "Content-Type": "application/json",
-          // Optional attribution shown on the OpenRouter dashboard.
-          "HTTP-Referer": "https://nitinmohan.dev",
-          "X-Title": "Nitin Mohan - Portfolio",
-        },
-        body: JSON.stringify({
-          model,
-          max_tokens: MAX_OUTPUT_TOKENS,
-          stream: true,
-          messages: apiMessages,
-          // Several current slugs are reasoning models: left on, they spend the
-          // whole token budget on hidden reasoning and stream back empty
-          // content. Non-reasoning models ignore this field.
-          reasoning: { enabled: false },
-        }),
-      });
-      if (res.ok && res.body) {
-        upstream = res;
-        break;
-      }
-      const detail = await res.text().catch(() => "");
-      console.error("OpenRouter model failed:", model, res.status, detail);
-    } catch (err) {
-      console.error("OpenRouter fetch error:", model, err);
-    }
+    upstream = await openStream(model, apiKey, apiMessages, ac.signal);
+    if (upstream) break;
   }
 
-  if (!upstream || !upstream.body) {
+  if (!upstream) {
     releaseGuards();
     return Response.json(
       { error: "The assistant is unavailable right now. Please try again." },
@@ -186,33 +291,28 @@ export async function POST(req: Request) {
 
   // Re-stream the upstream SSE as plain text deltas to the client.
   const encoder = new TextEncoder();
-  const decoder = new TextDecoder();
-  const reader = upstream.body.getReader();
+  const { reader, decoder, firstText } = upstream;
 
   const readable = new ReadableStream({
     async start(controller) {
-      let buffer = "";
+      let buffer = upstream!.leftover;
+      let trailerSent = false;
       try {
+        controller.enqueue(encoder.encode(firstText));
         // eslint-disable-next-line no-constant-condition
         while (true) {
           const { done, value } = await reader.read();
           if (done) break;
           buffer += decoder.decode(value, { stream: true });
 
-          // SSE frames are separated by newlines; each data line is JSON.
           const lines = buffer.split("\n");
           buffer = lines.pop() ?? "";
           for (const line of lines) {
-            const t = line.trim();
-            if (!t.startsWith("data:")) continue;
-            const data = t.slice(5).trim();
-            if (data === "[DONE]") continue;
-            try {
-              const json = JSON.parse(data);
-              const text = json?.choices?.[0]?.delta?.content;
-              if (text) controller.enqueue(encoder.encode(text));
-            } catch {
-              // Ignore keep-alive / partial frames.
+            const { text, truncated } = parseFrame(line);
+            if (text) controller.enqueue(encoder.encode(text));
+            if (truncated && !trailerSent) {
+              trailerSent = true;
+              controller.enqueue(encoder.encode(TRUNCATION_TRAILER));
             }
           }
         }
