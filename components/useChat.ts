@@ -10,7 +10,7 @@ export const SEED: Msg[] = [
   { role: "user", content: `Who is ${profile.firstName}?` },
   {
     role: "assistant",
-    content: `${profile.firstName} is a software engineer with 3 years at Accenture and an M.S. in CS at NYU. He builds **AI / agentic** products and fast React frontends. Ask me about his experience, projects, or skills! 👋`,
+    content: `Software engineer: three years at Accenture, now an M.S. in CS at NYU, building RAG and agentic systems. Ask about the experience, the projects, or the stack.`,
   },
 ];
 

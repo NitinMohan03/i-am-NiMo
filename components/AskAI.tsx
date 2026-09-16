@@ -42,26 +42,25 @@ export function AskAI() {
         <div className="flex flex-col gap-6">
           <p
             data-reveal="up"
-            className="m-0 max-w-[52ch] text-[16.5px] leading-[1.75] text-ink-muted [text-wrap:pretty]"
+            className="m-0 max-w-[44ch] text-[clamp(17px,1.4vw,21px)] leading-[1.6] text-ink [text-wrap:pretty]"
           >
-            This box is one of the GenAI demos. It runs on a live LLM whose system
-            prompt is built from the same profile data the rest of this page renders,
-            so it answers about {profile.firstName} and nothing else.
+            I built this one. Ask it anything about my work; it only knows what&apos;s
+            on this page.
           </p>
-          <div
+          {/* The stack as a spec strip, same register as the project metrics.
+              Says "engineer" without narrating the feature. */}
+          <ul
             data-reveal="up"
             data-delay="80"
-            className="flex flex-col gap-3 border border-line bg-ground-panel px-6 py-[22px]"
+            className="m-0 flex list-none flex-wrap gap-x-4 gap-y-2 p-0 font-mono text-[11.5px] uppercase tracking-[0.12em] text-ink-dim"
           >
-            <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-coral">
-              Under the hood
-            </span>
-            <p className="m-0 text-[15.5px] leading-[1.7] text-ink-soft [text-wrap:pretty]">
-              Next.js route handler → OpenRouter, streamed back token by token, with
-              per-IP rate limiting and a model fallback chain. Grounding rules forbid
-              inventing anything that is not in the profile.
-            </p>
-          </div>
+            {["Next.js", "OpenRouter", "Streamed", "Rate-limited"].map((t, i) => (
+              <li key={t} className="flex items-center gap-4">
+                {i > 0 && <span aria-hidden className="text-coral">·</span>}
+                {t}
+              </li>
+            ))}
+          </ul>
         </div>
 
         <div
