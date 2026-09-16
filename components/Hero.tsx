@@ -100,34 +100,32 @@ export function Hero() {
         className="relative flex aspect-square w-full max-w-[460px] items-center justify-center justify-self-center"
       >
         <div className="absolute inset-0 rounded-full border border-coral/20" />
-        <div className="absolute inset-[6%] rounded-full border-[14px] border-coral/50" />
-        <div className="absolute inset-[6%] rotate-[38deg] rounded-full">
-          <span className="absolute left-1/2 top-[-7px] -ml-[6.5px] h-[13px] w-[13px] rounded-full bg-coral" />
-        </div>
 
-        {/* Dark clothing against a near-black ground loses its edges, so lift
-            the subject off the background with a soft pool of light behind it. */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-[10%] rounded-full"
-          style={{
-            background:
-              "radial-gradient(circle at 50% 45%, rgba(233,237,243,0.10) 0%, rgba(233,237,243,0.04) 45%, rgba(233,237,243,0) 72%)",
-          }}
-        />
-        {/* Cut-out headshot, floating over the ring rather than masked inside
-            it, so the shoulders break the circle. */}
-        <div className="absolute inset-x-0 bottom-0 h-[92%]">
+        {/* Full photograph, background and all, cropped to the disc inside
+            the ring. A tight circle keeps the face and the skyline and hides
+            the body angle a cut-out would have exposed. */}
+        <div className="absolute inset-[calc(6%+14px)] overflow-hidden rounded-full bg-ground-panel">
           <Image
-            src={profile.photo ?? "/avatar-bridge.png"}
+            src={profile.photo ?? "/avatar-bridge.jpg"}
             alt={`${profile.name}, ${profile.title}`}
             fill
             priority
             sizes="(max-width: 768px) 70vw, 420px"
-            // The source photo is cropped at the chest, so dissolve the last
-            // slice instead of ending on a hard horizontal cut.
-            className="object-contain object-bottom [mask-image:linear-gradient(to_bottom,black_86%,transparent_99%)]"
+            className="object-cover"
+            style={{ objectPosition: "50% 30%" }}
           />
+          {/* Thin vignette so the photo's edge reads as a deliberate frame
+              rather than a hard cut against the ring. */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 rounded-full shadow-[inset_0_0_0_1px_rgba(255,255,255,0.10),inset_0_0_48px_rgba(21,26,34,0.55)]"
+          />
+        </div>
+
+        {/* Ring and marker sit above the photo so they stay crisp on its edge. */}
+        <div className="pointer-events-none absolute inset-[6%] rounded-full border-[14px] border-coral/50" />
+        <div className="pointer-events-none absolute inset-[6%] rotate-[38deg] rounded-full">
+          <span className="absolute left-1/2 top-[-7px] -ml-[6.5px] h-[13px] w-[13px] rounded-full bg-coral" />
         </div>
       </div>
 
