@@ -105,8 +105,8 @@ export function Hero() {
           <span className="absolute left-1/2 top-[-7px] -ml-[6.5px] h-[13px] w-[13px] rounded-full bg-coral" />
         </div>
 
-        {/* A dark suit against a near-black ground loses its edges, so lift the
-            subject off the background with a soft pool of light behind it. */}
+        {/* Dark clothing against a near-black ground loses its edges, so lift
+            the subject off the background with a soft pool of light behind it. */}
         <div
           aria-hidden
           className="pointer-events-none absolute inset-[10%] rounded-full"
@@ -119,7 +119,7 @@ export function Hero() {
             it, so the shoulders break the circle. */}
         <div className="absolute inset-x-0 bottom-0 h-[92%]">
           <Image
-            src={profile.photo ?? "/avatar-suit.png"}
+            src={profile.photo ?? "/avatar-bridge.png"}
             alt={`${profile.name}, ${profile.title}`}
             fill
             priority

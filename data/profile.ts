@@ -99,7 +99,7 @@ export const profile = {
   },
 
   // Background-removed headshot, rendered floating over the hero's ring.
-  photo: "/avatar-suit.png" as string | null,
+  photo: "/avatar-bridge.png" as string | null,
   initials: "NM",
 
   githubUsername: "NitinMohan03",
